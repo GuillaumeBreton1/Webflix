@@ -6,10 +6,6 @@ public class App {
 
 		LoginFrame fenetre = new LoginFrame();
 
-		//environnement.addPropertyChangeListener(fenetre);
-		//environnement.execute();
-
-
 	}
     
 }
