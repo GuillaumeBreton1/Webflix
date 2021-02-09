@@ -1,42 +1,56 @@
 package hibernate.tableMapping;
 
+import javax.persistence.*;
 import java.sql.Date;
 
-public class Client extends Utilisateur {
+@Entity
+@Table(name = "Client")
+public class Client {
 
+    @Id
+    private Integer id;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Utilisateur utilisateur;
+
+    @ManyToOne
+    @JoinColumn(name = "idForfait")
     private Forfait forfait;
+
+    @OneToOne
+    @JoinColumn(name = "numeroCarteCredit")
     private CarteCredit carteCredit;
 
-    public Client(Integer id, String nomDeFamille, String prenom, String motDePasse, String courriel, 
-                  String numeroTelephone,Date dateNaissance, Adresse adresse, Forfait forfait,
-                  CarteCredit carteCredit) {
-
-        super(id, nomDeFamille, prenom, motDePasse, courriel, numeroTelephone, dateNaissance, adresse);
-        this.forfait = forfait; 
-        this.carteCredit = carteCredit; 
-
+    public Integer getId() {
+        return id;
     }
 
-    //GETTERS
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
     public Forfait getForfait() {
-        return this.forfait;
+        return forfait;
     }
 
+    public void setForfait(Forfait forfait) {
+        this.forfait = forfait;
+    }
 
     public CarteCredit getCarteCredit() {
-        return this.carteCredit;
+        return carteCredit;
     }
 
-    // SETTERS 
-    public Client setForfait(Forfait forfait) {
-        setForfait(forfait);
-        return this;
+    public void setCarteCredit(CarteCredit carteCredit) {
+        this.carteCredit = carteCredit;
     }
-
-    public Client setCarteCredit(CarteCredit carteCredit) {
-        setCarteCredit(carteCredit);
-        return this;
-    }
-
-
 }

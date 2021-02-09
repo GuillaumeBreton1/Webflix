@@ -1,73 +1,65 @@
 package hibernate.tableMapping;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Forfait")
 public class Forfait {
 
-    private String nom; 
-    private int cout; 
-    private int locationMax; 
-    private char code;
-    private int dureeMax;
+    @Column(name = "code")
+    private Character code;
 
-    private static Forfait debutant = new Forfait("Débutant", 5, 1, 'D', 10);
-    private static Forfait intermediaire = new Forfait("Intermédiaire", 10, 5, 'I', 30);
-    private static Forfait avance = new Forfait("Avancé", 15, 10, 'A', 0);
+    @Column(name = "nom")
+    private String nom;
 
-    public static Forfait getForfait(char code){
-        if(code == debutant.getCode()){
-            return debutant;
-        }
-        else if(code == intermediaire.getCode()){
-            return intermediaire;
-        }
-        else{
-            return avance;
-        }
+    @Column(name = "cout")
+    private Integer cout;
+
+    @Column(name = "locationMax")
+    private Integer locationMax;
+
+    @Column(name = "dureeMax")
+    private Integer dureeMax;
+
+    public Character getCode() {
+        return code;
     }
 
-    public static Forfait getDebutant(){
-        return debutant;
-    }
-
-    public static Forfait getIntermediaire(){
-        return intermediaire;
-    }
-
-    public static Forfait getAvance(){
-        return avance;
-    }
-
-    private Forfait(String nom, int cout, int locationMax, char code, int dureeMax) {
-
-        this.nom = nom;
-        this.cout = cout;
-        this.locationMax = locationMax;
+    public void setCode(Character code) {
         this.code = code;
-        this.dureeMax = dureeMax;
-
     }
 
-    //GETTERS
     public String getNom() {
-        return this.nom;
+        return nom;
     }
 
-
-    public int getCout() {
-        return this.cout;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-
-    public int getLocationMax() {
-        return this.locationMax;
+    public Integer getCout() {
+        return cout;
     }
 
-
-    public char getCode() {
-        return this.code;
+    public void setCout(Integer cout) {
+        this.cout = cout;
     }
 
+    public Integer getLocationMax() {
+        return locationMax;
+    }
 
-    public int getDureeMax() {
-        return this.dureeMax;
+    public void setLocationMax(Integer locationMax) {
+        this.locationMax = locationMax;
+    }
+
+    public Integer getDureeMax() {
+        return dureeMax;
+    }
+
+    public void setDureeMax(Integer dureeMax) {
+        this.dureeMax = dureeMax;
     }
 }

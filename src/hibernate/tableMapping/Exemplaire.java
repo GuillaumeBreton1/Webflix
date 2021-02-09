@@ -1,37 +1,54 @@
 package hibernate.tableMapping;
 
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
+@Table(name = "Exemplaire")
 public class Exemplaire {
 
-    private Utilisateur utilisateur;
+    @Id
+    private Integer id;
+
+    @Column(name = "dateAchat")
     private Date dateAchat;
 
+    @ManyToOne
+    @JoinColumn(name = "idFilm")
+    private Film film;
 
-    public Exemplaire(Utilisateur utilisateur, Date dateAchat) {
-        this.utilisateur = utilisateur;
+    @Column(name = "disponibilite")
+    private Integer disponibilite;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getDateAchat() {
+        return dateAchat;
+    }
+
+    public void setDateAchat(Date dateAchat) {
         this.dateAchat = dateAchat;
     }
 
-    //GETTERS
-    public Utilisateur getUtilisateur() {
-        return this.utilisateur;
+    public Film getFilm() {
+        return film;
     }
 
-
-    public Date getDateAchat() {
-        return this.dateAchat;
+    public void setFilm(Film film) {
+        this.film = film;
     }
 
-    //SETTERS 
-    public Exemplaire setUtilisateur(Utilisateur utilisateur) {
-        setUtilisateur(utilisateur);
-        return this;
+    public Integer getDisponibilite() {
+        return disponibilite;
     }
 
-    public Exemplaire setDateAchat(Date dateAchat) {
-        setDateAchat(dateAchat);
-        return this;
+    public void setDisponibilite(Integer disponibilite) {
+        this.disponibilite = disponibilite;
     }
-
 }

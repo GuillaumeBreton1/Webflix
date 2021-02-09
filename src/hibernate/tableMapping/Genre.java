@@ -1,22 +1,33 @@
 package hibernate.tableMapping;
 
-public class Genre {
-    
-    private String nom; 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public Genre(String nom) {
+@Entity
+@Table(name = "Genre")
+public class Genre {
+
+    @Id
+    private Integer id;
+
+    @Column(name = "nom")
+    private String nom;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
         this.nom = nom;
     }
-
-    //SETTERS
-    public Genre setNom(String nom) {
-        setNom(nom);
-        return this;
-    }
-
-    //GETTERS
-    public String getNom() {
-        return this.nom;
-    }
-
 }

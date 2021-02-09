@@ -1,78 +1,54 @@
 package hibernate.tableMapping;
 
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
+@Table(name = "CarteCredit")
 public class CarteCredit {
 
-    public static final int VISA = 1;
-    public static final int MASTERCARD = 2;
-    public static final int AMEX = 3;
+    @Column(name = "numero")
+    private Long numero;
 
-    private int type; 
-    private long numero; 
-    private Date dateExpiration; 
-    private int cvv; 
-    
-    public CarteCredit(){}
+    @ManyToOne
+    @JoinColumn(name = "typeCarte")
+    private TypeCarteCredit typeCarteCredit;
 
-    public CarteCredit(int type, long numero, Date dateExpiration, int cvv) {
-        this.type = type;
+    @Column(name = "dateExpiration")
+    private Date dateExpiration;
+
+    @Column(name = "cvv")
+    private Integer cvv;
+
+    public Long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Long numero) {
         this.numero = numero;
-        this.dateExpiration = dateExpiration;
-        this.cvv = cvv;
     }
 
-    //GETTERS
-    public int getType() {
-        return this.type;
+    public TypeCarteCredit getTypeCarteCredit() {
+        return typeCarteCredit;
     }
 
-
-    public long getNumero() {
-        return this.numero;
+    public void setTypeCarteCredit(TypeCarteCredit typeCarteCredit) {
+        this.typeCarteCredit = typeCarteCredit;
     }
-
 
     public Date getDateExpiration() {
-        return this.dateExpiration;
+        return dateExpiration;
     }
 
-
-    public int getCvv() {
-        return this.cvv;
+    public void setDateExpiration(Date dateExpiration) {
+        this.dateExpiration = dateExpiration;
     }
 
-    //SETTERS
-    public CarteCredit setType(int type) {
-        setType(type);
-        return this;
+    public Integer getCvv() {
+        return cvv;
     }
 
-    public CarteCredit setNumero(long numero) {
-        setNumero(numero);
-        return this;
+    public void setCvv(Integer cvv) {
+        this.cvv = cvv;
     }
-
-    public CarteCredit setDateExpiration(Date dateExpiration) {
-        setDateExpiration(dateExpiration);
-        return this;
-    }
-
-    public CarteCredit setCvv(int cvv) {
-        setCvv(cvv);
-        return this;
-    }
-
-    public static int checkType(String type){
-        if(type.equals("Visa")){
-            return VISA;
-        }
-        else if(type.equals("MasterCard")){
-            return MASTERCARD;
-        }
-        else{
-            return AMEX;
-        }
-    }
-
 }
