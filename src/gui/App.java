@@ -2,6 +2,8 @@ package gui;
 
 import gui.login.LoginFrame;
 import gui.login.LoginPanel;
+import gui.recherche.ResearchBarPanel;
+import gui.recherche.ResearchFrame;
 
 public class App {
 
@@ -11,6 +13,12 @@ public class App {
         LoginFrame fenetre = new LoginFrame();
         fenetre.add(panel); 
         fenetre.setVisible(true);
+		//LoginFrame fenetre = new LoginFrame();
+		ResearchFrame rf = new ResearchFrame();
+		ResearchBarPanel rp = new ResearchBarPanel();
+
+		rf.add(rp);
+
 	}
     
 }
