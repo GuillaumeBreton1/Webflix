@@ -1,9 +1,10 @@
 package gui.recherche;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class ResearchBarPanel extends JPanel {
-    private static final String PANEL_TITLE = "Rechercher un film";
     private static final String MOVIE_TITLE = "Titre";
     private static final String YEAR_GAP = "Année de sortie (_;_)";
     private static final String COUNTRY = "Pays de production";
@@ -11,9 +12,8 @@ public class ResearchBarPanel extends JPanel {
     private static final String GENRE = "Genre";
     private static final String DIRECTOR = "Réalisateur";
     private static final String ACTOR = "Acteur";
-    private static final int JTF_LENGTH = 10;
+    private static final int JTF_LENGTH = 11;
 
-    private JSplitPane splitPane;
     private JTextField movieTitleField;
     private JTextField yearGapField;
     private JTextField countryField;
@@ -45,8 +45,7 @@ public class ResearchBarPanel extends JPanel {
         this.directorPanel = new JPanel();
         this.actorPanel = new JPanel();
 
-//        setLabel(this, PANEL_TITLE);
-//        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        this.setLayout(new GridLayout(7, 1));
         setUpPanel(movieTitlePanel, movieTitleField, MOVIE_TITLE);
         setUpPanel(yearGapPanel, yearGapField, YEAR_GAP);
         setUpPanel(countryPanel, countryField, COUNTRY);
@@ -54,6 +53,7 @@ public class ResearchBarPanel extends JPanel {
         setUpPanel(genrePanel, genreField, GENRE);
         setUpPanel(directorPanel, directorField, DIRECTOR);
         setUpPanel(actorPanel, actorField, ACTOR);
+        System.out.println(this.getSize());
     }
 
     public void setLabel(JPanel panel, String label) {
@@ -62,11 +62,10 @@ public class ResearchBarPanel extends JPanel {
     }
 
     public void setUpPanel(JPanel panel, JTextField jTextField, String label) {
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        if(!label.isEmpty()) {
-            this.setLabel(panel, label);
-        }
+        panel.setLayout(new GridLayout(3, 1));
+        this.setLabel(panel, label);
         panel.add(jTextField);
+        panel.setBorder(new EmptyBorder(0, 10, 0, 0));
         this.add(panel);
     }
 }
