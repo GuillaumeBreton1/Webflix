@@ -1,32 +1,54 @@
 package hibernate.tableMapping;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Role")
 public class Role {
 
+    @Id
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "idActeur")
+    private PersonnalitePublique personnalitePublique;
+
+    @ManyToOne
+    @JoinColumn(name = "idFilm")
+    private Film film;
+
+    @Column(name = "nom")
     private String nom;
-    private Integer idActeur;
 
-    public Role(String nom, Integer idActeur) {
-        this.nom = nom;
-        this.idActeur = idActeur;
+    public Integer getId() {
+        return id;
     }
 
-    //GETTERS
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public PersonnalitePublique getPersonnalitePublique() {
+        return personnalitePublique;
+    }
+
+    public void setPersonnalitePublique(PersonnalitePublique personnalitePublique) {
+        this.personnalitePublique = personnalitePublique;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
     public String getNom() {
-        return this.nom;
+        return nom;
     }
 
-    public Integer getActeur() {
-        return this.idActeur;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    //SETTERS
-    public Role setNom(String nom) {
-        setNom(nom);
-        return this;
-    }
-
-    public Role setActeur(PersonnalitePublique acteur) {
-        setActeur(acteur);
-        return this;
-    }
 }

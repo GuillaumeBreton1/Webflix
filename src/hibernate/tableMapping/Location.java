@@ -1,79 +1,79 @@
 package hibernate.tableMapping;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
+@Entity
+@Table(name = "Location")
 public class Location {
     
+    @Id
+    private Integer id;
+
+    @Column(name = "dateLocation")
     private Date dateLocation;
-    private Client client; 
-    private Exemplaire exemplaire; 
-    private boolean locationActive; 
-    private Date dateRetour; 
 
+    @Column(name = "dateRetour")
+    private Date dateRetour;
 
-    public Location(Date dateLocation, Client client, Exemplaire exemplaire, boolean locationActive, Date dateRetour) {
+    @ManyToOne
+    @JoinColumn(name = "idUtilisateur")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "idExemplaire")
+    private Exemplaire exemplaire;
+
+    @Column(name = "etatLocation")
+    private Integer etatLocation;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getDateLocation() {
+        return dateLocation;
+    }
+
+    public void setDateLocation(Date dateLocation) {
         this.dateLocation = dateLocation;
-        this.client = client;
-        this.exemplaire = exemplaire;
-        this.locationActive = locationActive;
+    }
+
+    public Date getDateRetour() {
+        return dateRetour;
+    }
+
+    public void setDateRetour(Date dateRetour) {
         this.dateRetour = dateRetour;
     }
 
-    //GETTERS
-    public Date getDateLocationt() {
-        return this.dateLocation;
-    }
-
-
     public Client getClient() {
-        return this.client;
+        return client;
     }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public Exemplaire getExemplaire() {
-        return this.exemplaire;
+        return exemplaire;
     }
 
-
-    public boolean isLocationActive() {
-        return this.locationActive;
+    public void setExemplaire(Exemplaire exemplaire) {
+        this.exemplaire = exemplaire;
     }
 
-    public boolean getLocationActive() {
-        return this.locationActive;
+    public Integer getEtatLocation() {
+        return etatLocation;
     }
 
-
-    public Date getDateRetour() {
-        return this.dateRetour;
+    public void setEtatLocation(Integer etatLocation) {
+        this.etatLocation = etatLocation;
     }
-
-    //SETTERS 
-    public Location setDateLocation(Date datePret) {
-        setDateLocation(datePret);
-        return this;
-    }
-
-    public Location setClient(Client client) {
-        setClient(client);
-        return this;
-    }
-
-    public Location setExemplaire(Exemplaire exemplaire) {
-        setExemplaire(exemplaire);
-        return this;
-    }
-
-    public Location setLocationActive(boolean locationActive) {
-        setLocationActive(locationActive);
-        return this;
-    }
-
-    public Location setDateRetour(Date dateRetour) {
-        setDateRetour(dateRetour);
-        return this;
-    }
-
 }
 
     

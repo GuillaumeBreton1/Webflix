@@ -1,108 +1,140 @@
 package hibernate.tableMapping;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
+@Entity
+@Table(name = "Utilisateur")
 public class Utilisateur {
-    
+
+    @Id
     private Integer id;
-    private String nomDeFamille; 
-    private String prenom; 
-    private String motDePasse; 
-    private String courriel; 
-    private String numeroTelephone; 
+
+    @Column(name = "prenom")
+    private String prenom;
+
+    @Column(name = "nomDeFamille")
+    private String nomDeFamille;
+
+    @Column(name = "motDePasse")
+    private String motDePasse;
+
+    @Column(name = "courriel")
+    private String courriel;
+
+    @Column(name = "numeroTelephone")
+    private String numeroTelephone;
+
+    @Column(name = "dateNaissance")
     private Date dateNaissance;
 
+    @Column(name = "numeroCivique")
+    private Integer numeroCivique;
 
-    public Utilisateur(Integer id, String nomDeFamille, String prenom, String motDePasse, String courriel, 
-                       String numeroTelephone, Date dateNaissance, Adresse adresse) {
+    @Column(name = "rue")
+    private String rue;
 
-        this.id = id;
-        this.nomDeFamille = nomDeFamille;
-        this.prenom = prenom;
-        this.motDePasse = motDePasse;
-        this.courriel = courriel;
-        this.numeroTelephone = numeroTelephone;
-        this.dateNaissance = dateNaissance;
-        this.adresse = adresse;
+    @Column(name = "ville")
+    private String ville;
+
+    @Column(name = "province")
+    private String province;
+
+    @Column(name = "codePostal")
+    private String codePostal;
+
+    public Integer getId() {
+        return id;
     }
 
-    // GETTERS
-    public Integer getId() {
-        return this.id;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getNomDeFamille() {
-        return this.nomDeFamille;
+        return nomDeFamille;
     }
 
-
-    public String getPrenom() {
-        return this.prenom;
+    public void setNomDeFamille(String nomDeFamille) {
+        this.nomDeFamille = nomDeFamille;
     }
-
 
     public String getMotDePasse() {
-        return this.motDePasse;
+        return motDePasse;
     }
 
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
 
     public String getCourriel() {
-        return this.courriel;
+        return courriel;
     }
 
+    public void setCourriel(String courriel) {
+        this.courriel = courriel;
+    }
 
     public String getNumeroTelephone() {
-        return this.numeroTelephone;
+        return numeroTelephone;
     }
 
+    public void setNumeroTelephone(String numeroTelephone) {
+        this.numeroTelephone = numeroTelephone;
+    }
 
     public Date getDateNaissance() {
-        return this.dateNaissance;
+        return dateNaissance;
     }
 
-
-    public Adresse getAdresse() {
-        return this.adresse;
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
-    // SETTERS 
-    public Utilisateur setId(Integer id) {
-        this.id = id;
-        return this;
+    public Integer getNumeroCivique() {
+        return numeroCivique;
     }
 
-    public Utilisateur setNomDeFamille(String nomDeFamille) {
-        setNomDeFamille(nomDeFamille);
-        return this;
+    public void setNumeroCivique(Integer numeroCivique) {
+        this.numeroCivique = numeroCivique;
     }
 
-    public Utilisateur setPrenom(String prenom) {
-        setPrenom(prenom);
-        return this;
+    public String getRue() {
+        return rue;
     }
 
-    public Utilisateur setMotDePasse(String motDePasse) {
-        setMotDePasse(motDePasse);
-        return this;
+    public void setRue(String rue) {
+        this.rue = rue;
     }
 
-    public Utilisateur setCourriel(String courriel) {
-        setCourriel(courriel);
-        return this;
+    public String getVille() {
+        return ville;
     }
 
-    public Utilisateur setNumeroTelephone(String numeroTelephone) {
-        setNumeroTelephone(numeroTelephone);
-        return this;
+    public void setVille(String ville) {
+        this.ville = ville;
     }
 
-    public Utilisateur setDateNaissance(Date dateNaissance) {
-        setDateNaissance(dateNaissance);
-        return this;
+    public String getProvince() {
+        return province;
     }
 
-    public Utilisateur setAdresse(Adresse adresse) {
-        setAdresse(adresse);
-        return this;
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
     }
 }

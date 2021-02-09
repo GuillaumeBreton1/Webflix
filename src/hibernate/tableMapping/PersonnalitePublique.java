@@ -1,103 +1,87 @@
 package hibernate.tableMapping;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
+@Entity
+@Table(name = "PersonnalitePublique")
 public class PersonnalitePublique {
 
+    @Id
     private Integer id;
-    private String nom; 
+
+    @Column(name = "nom")
+    private String nom;
+
+    @Column(name = "dateNaissance")
     private Date dateNaissance;
-    private Pays lieuNaissance;
+
+    @Column(name = "provenance")
+    private String provenance;
+
+    @Column(name = "lienPhoto")
     private String lienPhoto;
+
+    @Column(name = "biographie")
     private String biographie;
-    public enum Types {Réalisateur, Acteur}
-    private Types type;
 
-    public PersonnalitePublique(Types type) {
-        this.type = type;
-    }
+    @ManyToOne
+    @JoinColumn(name = "typePersonne")
+    private TypePersonne typePersonne;
 
-    public PersonnalitePublique(Integer id, String nom, Types type) {
-        this.id = id;
-        this.nom = nom;
-        this.type = type;
-    }
-
-    public PersonnalitePublique(Integer id, String nom, Date dateNaissance, Pays lieuNaissance, String lienPhoto, String biographie, Types type) {
-        this.id = id;
-        this.nom = nom;
-        this.dateNaissance = dateNaissance;
-        this.lieuNaissance = lieuNaissance;
-        this.lienPhoto = lienPhoto;
-        this.biographie = biographie;
-        this.type = type;
-    }
-
-    //GETTERS
     public Integer getId() {
-        return this.id;
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNom() {
-        return this.nom;
-    }
-
-
-    public Date getDateNaissance() {
-        return this.dateNaissance;
-    }
-
-
-    public Pays getLieuNaissance() {
-        return this.lieuNaissance;
-    }
-
-
-    public String getLienPhoto() {
-        return this.lienPhoto;
-    }
-
-
-    public String getBiographie() {
-        return this.biographie;
-    }
-
-
-    public Types getType() {
-        return this.type;
-    }
-
-    //SETTERS
-    public void setId(Integer id) {
-        this.id = id;
+        return nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public PersonnalitePublique setDateNaissance(Date dateNaissance) {
-        setDateNaissance(dateNaissance);
-        return this;
+    public Date getDateNaissance() {
+        return dateNaissance;
     }
 
-    public PersonnalitePublique setLieuNaissance(Pays lieuNaissance) {
-        setLieuNaissance(lieuNaissance);
-        return this;
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
-    public PersonnalitePublique setLienPhoto(String lienPhoto) {
-        setLienPhoto(lienPhoto);
-        return this;
+    public String getProvenance() {
+        return provenance;
     }
 
-    public PersonnalitePublique setBiographie(String biographie) {
-        setBiographie(biographie);
-        return this;
+    public void setProvenance(String provenance) {
+        this.provenance = provenance;
     }
 
-    public void setType(Types type) {
-        this.type = type;
+    public String getLienPhoto() {
+        return lienPhoto;
     }
 
+    public void setLienPhoto(String lienPhoto) {
+        this.lienPhoto = lienPhoto;
+    }
+
+    public String getBiographie() {
+        return biographie;
+    }
+
+    public void setBiographie(String biographie) {
+        this.biographie = biographie;
+    }
+
+    public TypePersonne getTypePersonne() {
+        return typePersonne;
+    }
+
+    public void setTypePersonne(TypePersonne typePersonne) {
+        this.typePersonne = typePersonne;
+    }
 }
