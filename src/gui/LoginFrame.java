@@ -8,7 +8,7 @@ public class LoginFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static final String TITRE_FENETRE = "Webflix";
-		private static final Dimension DIMENSION = new Dimension(700, 700);
+	private static final Dimension DIMENSION = new Dimension(700, 700);
 
 
 	public LoginFrame() {
