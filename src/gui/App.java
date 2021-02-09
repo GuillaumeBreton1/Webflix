@@ -5,6 +5,8 @@ import gui.login.LoginPanel;
 import gui.recherche.ResearchBarPanel;
 import gui.recherche.ResearchFrame;
 
+import static java.lang.Thread.sleep;
+
 public class App {
 
     public static void main(String[] args) {
@@ -18,6 +20,7 @@ public class App {
 		ResearchBarPanel rp = new ResearchBarPanel();
 
 		rf.add(rp);
+		rf.setVisible(true);
 
 	}
     
