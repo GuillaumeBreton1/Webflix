@@ -11,48 +11,21 @@ public class ResearchFrame extends JFrame {
     private static final String TITRE_FENETRE = "Webflix";
     private static final Dimension DIMENSION = new Dimension(700, 700);
 
-    private TitlePanel titlePanel;
-    private ResearchBarPanel researchBarPanel;
-    private ResultsPanel resultsPanel;
-    private ArrayList<String> list = new ArrayList<>() {
-        {
-            add("allo");
-            add("allo1");
-            add("allo2");
-            add("allo");
-            add("allo1");
-            add("allo2");
-            add("allo");
-            add("allo1");
-            add("allo2");
-        }
-    };
-
+    private JPanel cards;
+    private ResearchPagePanel researchPagePanel;
+    private MovieInfoPagePanel movieInfoPagePanel;
+    private PersonInfoPagePanel personInfoPagePanel;
 
     public ResearchFrame() {
-        this.titlePanel = new TitlePanel();
-        this.researchBarPanel = new ResearchBarPanel();
-        this.resultsPanel = new ResultsPanel(list);
+        this.cards = new JPanel(new CardLayout());
+        this.researchPagePanel = new ResearchPagePanel();
+        this.movieInfoPagePanel = new MovieInfoPagePanel();
+        this.personInfoPagePanel = new PersonInfoPagePanel();
         setTitle(TITRE_FENETRE);
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(DIMENSION);
-        this.add(this.titlePanel, BorderLayout.NORTH);
-        this.add(this.researchBarPanel, BorderLayout.WEST);
-        this.add(this.resultsPanel, BorderLayout.CENTER);
+        this.add(researchPagePanel, BorderLayout.CENTER);
         this.setVisible(true);
-        this.setUpResearchButtonListener(this.resultsPanel, this);
-
-    }
-
-    public void setUpResearchButtonListener(ResultsPanel resultsPanel, JFrame jFrame) {
-        this.researchBarPanel.getResearchButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                resultsPanel.showResults();
-                jFrame.validate();
-                jFrame.repaint();
-            }
-        });
     }
 }
