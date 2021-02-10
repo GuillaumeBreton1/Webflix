@@ -2,6 +2,8 @@ package gui.recherche;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ResearchFrame extends JFrame {
@@ -32,18 +34,25 @@ public class ResearchFrame extends JFrame {
         this.researchBarPanel = new ResearchBarPanel();
         this.resultsPanel = new ResultsPanel(list);
         setTitle(TITRE_FENETRE);
-
-        // Mettre la fenetre au centre de l'ecran
         setLocationRelativeTo(null);
-
-        // Empecher la redimension de la fenetre
         setResizable(false);
         setSize(DIMENSION);
         this.add(this.titlePanel, BorderLayout.NORTH);
         this.add(this.researchBarPanel, BorderLayout.WEST);
         this.add(this.resultsPanel, BorderLayout.CENTER);
         this.setVisible(true);
+        this.setUpResearchButtonListener(this.resultsPanel, this);
 
+    }
 
+    public void setUpResearchButtonListener(ResultsPanel resultsPanel, JFrame jFrame) {
+        this.researchBarPanel.getResearchButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resultsPanel.showResults();
+                jFrame.validate();
+                jFrame.repaint();
+            }
+        });
     }
 }
