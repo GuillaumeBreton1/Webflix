@@ -2,9 +2,6 @@ package gui.recherche;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class ResearchFrame extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -25,7 +22,10 @@ public class ResearchFrame extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(DIMENSION);
-        this.add(researchPagePanel, BorderLayout.CENTER);
+        this.cards.add(this.researchPagePanel);
+        this.cards.add(this.movieInfoPagePanel);
+        this.cards.add(this.personInfoPagePanel);
+        this.add(cards);
         this.setVisible(true);
     }
 }

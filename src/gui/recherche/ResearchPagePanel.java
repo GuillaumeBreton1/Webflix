@@ -1,6 +1,8 @@
 package gui.recherche;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +36,7 @@ public class ResearchPagePanel extends JPanel {
         this.add(this.researchBarPanel, BorderLayout.WEST);
         this.add(this.resultsPanel, BorderLayout.CENTER);
         this.setUpResearchButtonListener(this.resultsPanel, this);
+        this.setUpResultsListSelectionListener(this.resultsPanel);
     }
 
     public void setUpResearchButtonListener(ResultsPanel resultsPanel, JPanel jPanel) {
@@ -43,6 +46,16 @@ public class ResearchPagePanel extends JPanel {
                 resultsPanel.showResults();
                 jPanel.validate();
                 jPanel.repaint();
+            }
+        });
+    }
+
+    public void setUpResultsListSelectionListener(ResultsPanel resultsPanel) {
+        this.resultsPanel.getResultsList().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                resultsPanel.setSelectedMovie(resultsPanel.getResultsList().getSelectedValue());
+                System.out.print(resultsPanel.getSelectedMovie());
             }
         });
     }

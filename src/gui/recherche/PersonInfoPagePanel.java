@@ -1,6 +1,8 @@
 package gui.recherche;
 
-public class PersonInfoPagePanel {
+import javax.swing.*;
+
+public class PersonInfoPagePanel extends JPanel {
 
     public PersonInfoPagePanel() {
 
