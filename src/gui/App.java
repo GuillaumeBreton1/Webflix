@@ -2,13 +2,7 @@ package gui;
 
 import gui.login.LoginFrame;
 import gui.login.LoginPanel;
-import gui.recherche.ResearchBarPanel;
-import gui.recherche.ResearchFrame;
-import gui.recherche.ResultsPanel;
-import gui.recherche.TitlePanel;
-
-import java.awt.*;
-import java.util.ArrayList;
+import gui.recherche.RechercheFrame;
 
 import static java.lang.Thread.sleep;
 
@@ -22,7 +16,7 @@ public class App {
         fenetre.setVisible(true);
 		//LoginFrame fenetre = new LoginFrame();
 
-		ResearchFrame rf = new ResearchFrame();
+		RechercheFrame rf = new RechercheFrame();
 
 	}
     
