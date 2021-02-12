@@ -24,6 +24,7 @@ public class InfoPersonnePanel extends JPanel {
         this.setLayout(new GridLayout(1, 2));
         this.initFixPanel();
         this.initInfoDuFilmPanel();
+        this.fixPanel.setPreferredSize(new Dimension(200, 700));
         this.add(this.fixPanel);
         this.add(this.infoDeLaPersonnePanel);
     }

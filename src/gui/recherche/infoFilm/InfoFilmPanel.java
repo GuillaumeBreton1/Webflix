@@ -1,5 +1,7 @@
 package gui.recherche.infoFilm;
 
+import gui.recherche.Listener.PersonneListener;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -34,10 +36,10 @@ public class InfoFilmPanel extends JPanel {
 
 
     public InfoFilmPanel() {
-        this.setLayout(new GridLayout(1, 2));
+        this.setLayout(new BorderLayout());
         this.initFixPanel();
         this.initInfoDuFilmPanel();
-        this.add(this.fixPanel);
+        this.add(this.fixPanel, BorderLayout.WEST);
         this.add(this.infoDuFilmPanel);
     }
 
@@ -57,6 +59,7 @@ public class InfoFilmPanel extends JPanel {
 
         this.fixPanel = new JPanel();
         this.fixPanel.setLayout(new GridLayout(12, 1));
+        this.fixPanel.setPreferredSize(new Dimension(200, 700));
         this.fixPanel.add(titreF);
         this.fixPanel.add(anneeF);
         this.fixPanel.add(paysF);
@@ -85,6 +88,8 @@ public class InfoFilmPanel extends JPanel {
         this.affiche = new JLabel();
         this.bandesAnnonces = new JLabel();
         this.realisateur.setForeground(Color.BLUE.darker());
+        this.scenaristes.setForeground(Color.BLUE.darker());
+        this.acteurs.setForeground(Color.BLUE.darker());
 
         this.infoDuFilmPanel = new JPanel();
         this.infoDuFilmPanel.setLayout(new GridLayout(12, 1));
@@ -109,7 +114,7 @@ public class InfoFilmPanel extends JPanel {
         this.langue.setText("fkhhhjj");
         this.duree.setText("ueujj");
         this.genres.setText("shhkhk");
-        this.realisateur.setText("kshkjkh");
+        this.realisateur.setText("kslllllllllllllllllllllllllllllllllllllllllllllllllllhkjkh");
         this.scenaristes.setText("oppip");
         this.acteurs.setText("lbkjk");
         this.resume.setText("kndd");
@@ -117,9 +122,10 @@ public class InfoFilmPanel extends JPanel {
         this.bandesAnnonces.setText("nkjk");
     }
 
-    public JLabel getRealisateur() {
-        return this.realisateur;
+    public void setUpPersonnesMouseListener(PersonneListener parsonneListener) {
+        this.realisateur.addMouseListener(parsonneListener);
+        this.scenaristes.addMouseListener(parsonneListener);
+        this.acteurs.addMouseListener(parsonneListener);
     }
-
 
 }

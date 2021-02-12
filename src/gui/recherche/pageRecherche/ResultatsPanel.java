@@ -25,10 +25,10 @@ public class ResultatsPanel extends JPanel {
     }
 
     public void montrerResultats() {
-        for(String result : this.resultats) {
-            listModel.addElement(result);
+        listModel.clear();
+        for(String resultat : this.resultats) {
+            listModel.addElement(resultat);
         }
-        System.out.println(this.listeResultats.getModel().getSize());
     }
 
     public JList<String> getListeResultats() {

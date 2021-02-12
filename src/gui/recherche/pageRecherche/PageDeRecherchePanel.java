@@ -34,7 +34,6 @@ public class PageDeRecherchePanel extends JPanel {
         this.add(this.barreDeRecherchePanel, BorderLayout.WEST);
         this.add(this.resultatsPanel, BorderLayout.CENTER);
         this.setUpBoutonRechercheListener(this.resultatsPanel, this);
-//        this.setUpResultsListSelectionListener(this.resultsPanel);
     }
 
     public void setUpBoutonRechercheListener(ResultatsPanel resultatsPanel, JPanel jPanel) {
@@ -52,13 +51,4 @@ public class PageDeRecherchePanel extends JPanel {
         return this.resultatsPanel;
     }
 
-//    public void setUpResultsListSelectionListener(ResultsPanel resultsPanel) {
-//        this.resultsPanel.getResultsList().addListSelectionListener(new ListSelectionListener() {
-//            @Override
-//            public void valueChanged(ListSelectionEvent e) {
-//                resultsPanel.setSelectedMovie(resultsPanel.getResultsList().getSelectedValue());
-//                System.out.print(resultsPanel.getSelectedMovie());
-//            }
-//        });
-//    }
 }

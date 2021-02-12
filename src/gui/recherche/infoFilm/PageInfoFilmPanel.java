@@ -12,8 +12,8 @@ public class PageInfoFilmPanel extends JPanel {
     public PageInfoFilmPanel() {
         this.titreInfoFilmPanel = new TitreInfoFilmPanel();
         this.infoFilmPanel = new InfoFilmPanel();
-        this.infoFilmPanel.setBorder(new EmptyBorder(0, 10, 0,10));
         this.setLayout(new BorderLayout(10, 10));
+        this.setBorder(new EmptyBorder(0, 40, 0, 40));
         this.add(this.titreInfoFilmPanel, BorderLayout.NORTH);
         this.add(this.infoFilmPanel);
     }
@@ -25,6 +25,10 @@ public class PageInfoFilmPanel extends JPanel {
 
     public InfoFilmPanel getInfoFilmPanel() {
         return this.infoFilmPanel;
+    }
+
+    public TitreInfoFilmPanel getTitreInfoFilmPanel() {
+        return this.titreInfoFilmPanel;
     }
 
 }
