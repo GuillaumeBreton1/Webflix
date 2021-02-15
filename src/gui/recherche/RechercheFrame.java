@@ -34,7 +34,7 @@ public class RechercheFrame extends JFrame {
         setSize(DIMENSION);
 
         this.setUpListeResultatsSelectionListener(this.pageDeRecherchePanel.getResultsPanel(), this.card, this.cards, this.pageInfoFilmPanel);
-        this.setUpPersonnesMouseListener();
+        this.setUpPersonneMouseListener();
         this.setUpRetourMouseListener();
 
         this.cards.add(this.pageDeRecherchePanel);
@@ -56,8 +56,8 @@ public class RechercheFrame extends JFrame {
         });
     }
 
-    public void setUpPersonnesMouseListener() {
-        this.pageInfoFilmPanel.getInfoFilmPanel().setUpPersonnesMouseListener(
+    public void setUpPersonneMouseListener() {
+        this.pageInfoFilmPanel.getInfoFilmPanel().setUpPersonneMouseListener(
                 new PersonneListener(this.pageInfoPersonnePanel, this.card, this.cards));
 
     }

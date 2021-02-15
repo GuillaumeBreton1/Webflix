@@ -4,6 +4,7 @@ import gui.recherche.Listener.PersonneListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class InfoFilmPanel extends JPanel {
     private static final String TITRE = "Titre : ";
@@ -33,6 +34,12 @@ public class InfoFilmPanel extends JPanel {
     private JLabel resume;
     private JLabel affiche;
     private JLabel bandesAnnonces;
+
+    // Pour plus tard
+//    private JPanel genres;
+//    private JPanel scenaristes;
+//    private JPanel acteurs;
+//    private JPanel bandeAnnonces;
 
 
     public InfoFilmPanel() {
@@ -116,13 +123,13 @@ public class InfoFilmPanel extends JPanel {
         this.genres.setText("shhkhk");
         this.realisateur.setText("kslllllllllllllllllllllllllllllllllllllllllllllllllllhkjkh");
         this.scenaristes.setText("oppip");
-        this.acteurs.setText("lbkjk");
+        this.acteurs.setText("lbkjk (Role) ");
         this.resume.setText("kndd");
         this.affiche.setText("skhkhk");
         this.bandesAnnonces.setText("nkjk");
     }
 
-    public void setUpPersonnesMouseListener(PersonneListener parsonneListener) {
+    public void setUpPersonneMouseListener(PersonneListener parsonneListener) {
         this.realisateur.addMouseListener(parsonneListener);
         this.scenaristes.addMouseListener(parsonneListener);
         this.acteurs.addMouseListener(parsonneListener);

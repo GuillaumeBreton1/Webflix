@@ -13,7 +13,7 @@ public class BarreDeRecherchePanel extends JPanel {
     private static final String REALISATEUR = "Réalisateur";
     private static final String ACTEUR = "Acteur";
     private static final int JTF_LENGTH = 11;
-    private static final String TOOLTIP_ICON_PATH = "src/gui/tooltipIcon.png";
+    private static final String TOOLTIP_ICON_PATH = "src/gui/icon/tooltipIcon.png";
     private static final String NOM_BOUTON_RECHERCHE = "Rechercher";
 
     private JTextField titreFilmField;

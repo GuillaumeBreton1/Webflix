@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class TitreInfoPersonnePanel extends JPanel {
 
-    private static final String RETOUR_ICON_PATH = "src/gui/retourIcon.png";
+    private static final String RETOUR_ICON_PATH = "src/gui/icon/retourIcon.png";
 
     private ImageIcon retourIcon;
     private JLabel retour;
