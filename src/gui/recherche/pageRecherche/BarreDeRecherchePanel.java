@@ -54,13 +54,13 @@ public class BarreDeRecherchePanel extends JPanel {
         this.boutonRecherche = new JButton(NOM_BOUTON_RECHERCHE);
 
         this.setLayout(new GridLayout(8, 1));
-        setUpPanel(titreFilmPanel, titreFilmField, TITRE_FILM, false);
-        setUpPanel(gapAnneePanel, gapAnneeField, GAP_ANNEE, false);
-        setUpPanel(paysPanel, paysField, PAYS, false);
-        setUpPanel(languePanel, langueField, LANGUE, false);
-        setUpPanel(genrePanel, genreField, GENRE, true);
-        setUpPanel(realisateurPanel, realisateurField, REALISATEUR, true);
-        setUpPanel(acteurPanel, acteurField, ACTEUR, true);
+        this.setUpPanel(titreFilmPanel, titreFilmField, TITRE_FILM, false);
+        this.setUpPanel(gapAnneePanel, gapAnneeField, GAP_ANNEE, false);
+        this.setUpPanel(paysPanel, paysField, PAYS, false);
+        this.setUpPanel(languePanel, langueField, LANGUE, false);
+        this.setUpPanel(genrePanel, genreField, GENRE, true);
+        this.setUpPanel(realisateurPanel, realisateurField, REALISATEUR, true);
+        this.setUpPanel(acteurPanel, acteurField, ACTEUR, true);
         this.boutonRecherchePanel.add(boutonRecherche);
         this.add(boutonRecherchePanel);
     }
@@ -71,7 +71,7 @@ public class BarreDeRecherchePanel extends JPanel {
             title.setIcon(this.tooltipIcon);
             title.setVerticalTextPosition(JLabel.CENTER);
             title.setHorizontalTextPosition(JLabel.LEFT);
-            title.setToolTipText("Pour entrer plusieurs valeurs, séparez les éléments par des virgules.");
+            title.setToolTipText("Pour entrer plusieurs valeurs dans un champ, séparez les éléments par des virgules.");
         }
         panel.add(title);
     }
