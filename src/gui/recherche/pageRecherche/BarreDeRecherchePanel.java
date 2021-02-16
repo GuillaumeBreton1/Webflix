@@ -3,6 +3,7 @@ package gui.recherche.pageRecherche;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class BarreDeRecherchePanel extends JPanel {
     private static final String TITRE_FILM = "Titre";
@@ -13,8 +14,10 @@ public class BarreDeRecherchePanel extends JPanel {
     private static final String REALISATEUR = "Réalisateur";
     private static final String ACTEUR = "Acteur";
     private static final int JTF_LENGTH = 11;
-    private static final String TOOLTIP_ICON_PATH = "src/gui/icon/tooltipIcon.png";
     private static final String NOM_BOUTON_RECHERCHE = "Rechercher";
+    private static final String AND = "Inclut tout les critères";
+    private static final String OR = "Inclut au moins un des critères";
+
 
     private JTextField titreFilmField;
     private JTextField gapAnneeField;
@@ -23,6 +26,9 @@ public class BarreDeRecherchePanel extends JPanel {
     private JTextField genreField;
     private JTextField realisateurField;
     private JTextField acteurField;
+    private JRadioButton andRadioButton;
+    private JRadioButton orRadioButton;
+    private JButton boutonRecherche;
     private JPanel titreFilmPanel;
     private JPanel gapAnneePanel;
     private JPanel paysPanel;
@@ -30,9 +36,9 @@ public class BarreDeRecherchePanel extends JPanel {
     private JPanel genrePanel;
     private JPanel realisateurPanel;
     private JPanel acteurPanel;
-    private ImageIcon tooltipIcon;
+    private JPanel radioButtonPanel;
     private JPanel boutonRecherchePanel;
-    private JButton boutonRecherche;
+
 
     public BarreDeRecherchePanel() {
         this.titreFilmField = new JTextField(JTF_LENGTH);
@@ -42,6 +48,8 @@ public class BarreDeRecherchePanel extends JPanel {
         this.genreField = new JTextField(JTF_LENGTH);
         this.realisateurField = new JTextField(JTF_LENGTH);
         this.acteurField = new JTextField(JTF_LENGTH);
+        this.andRadioButton = new JRadioButton(AND);
+        this.orRadioButton = new JRadioButton(OR);
         this.titreFilmPanel = new JPanel();
         this.gapAnneePanel = new JPanel();
         this.paysPanel = new JPanel();
@@ -49,36 +57,38 @@ public class BarreDeRecherchePanel extends JPanel {
         this.genrePanel = new JPanel();
         this.realisateurPanel = new JPanel();
         this.acteurPanel = new JPanel();
-        this.tooltipIcon = new ImageIcon(TOOLTIP_ICON_PATH);
         this.boutonRecherchePanel = new JPanel();
+        this.radioButtonPanel = new JPanel();
         this.boutonRecherche = new JButton(NOM_BOUTON_RECHERCHE);
 
-        this.setLayout(new GridLayout(8, 1));
-        this.setUpPanel(titreFilmPanel, titreFilmField, TITRE_FILM, false);
-        this.setUpPanel(gapAnneePanel, gapAnneeField, GAP_ANNEE, false);
-        this.setUpPanel(paysPanel, paysField, PAYS, false);
-        this.setUpPanel(languePanel, langueField, LANGUE, false);
-        this.setUpPanel(genrePanel, genreField, GENRE, true);
-        this.setUpPanel(realisateurPanel, realisateurField, REALISATEUR, true);
-        this.setUpPanel(acteurPanel, acteurField, ACTEUR, true);
+        this.setLayout(new GridLayout(9, 1));
+        this.setUpPanel(titreFilmPanel, titreFilmField, TITRE_FILM);
+        this.setUpPanel(gapAnneePanel, gapAnneeField, GAP_ANNEE);
+        this.setUpPanel(paysPanel, paysField, PAYS);
+        this.setUpPanel(languePanel, langueField, LANGUE);
+        this.setUpPanel(genrePanel, genreField, GENRE);
+        this.setUpPanel(realisateurPanel, realisateurField, REALISATEUR);
+        this.setUpPanel(acteurPanel, acteurField, ACTEUR);
+        this.setUpRadioButton(this.andRadioButton, true);
+        this.setUpRadioButton(this.orRadioButton, false);
+        this.setUpButtonGroup();
+        this.radioButtonPanel.setLayout(new GridLayout(2, 1));
+        this.radioButtonPanel.setBorder(new EmptyBorder(0,10,0,0));
+        this.radioButtonPanel.add(this.andRadioButton);
+        this.radioButtonPanel.add(this.orRadioButton);
+        this.add(this.radioButtonPanel);
         this.boutonRecherchePanel.add(boutonRecherche);
-        this.add(boutonRecherchePanel);
+        this.add(this.boutonRecherchePanel);
     }
 
-    public void setLabel(JPanel panel, String label, Boolean needsTooltip) {
+    public void setLabel(JPanel panel, String label) {
         JLabel title = new JLabel(label);
-        if(needsTooltip) {
-            title.setIcon(this.tooltipIcon);
-            title.setVerticalTextPosition(JLabel.CENTER);
-            title.setHorizontalTextPosition(JLabel.LEFT);
-            title.setToolTipText("Pour entrer plusieurs valeurs dans un champ, séparez les éléments par des virgules.");
-        }
         panel.add(title);
     }
 
-    public void setUpPanel(JPanel panel, JTextField jTextField, String label, Boolean needsTooltip) {
+    public void setUpPanel(JPanel panel, JTextField jTextField, String label) {
         panel.setLayout(new GridLayout(3, 1));
-        this.setLabel(panel, label, needsTooltip);
+        this.setLabel(panel, label);
         panel.add(jTextField);
         panel.setBorder(new EmptyBorder(0, 10, 0, 0));
         this.add(panel);
@@ -86,5 +96,16 @@ public class BarreDeRecherchePanel extends JPanel {
 
     public JButton getBoutonRecherche() {
         return this.boutonRecherche;
+    }
+
+    public void setUpRadioButton(JRadioButton radioButton, Boolean selected) {
+        radioButton.setMnemonic(KeyEvent.VK_B);
+        radioButton.setSelected(selected);
+    }
+
+    public void setUpButtonGroup() {
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(this.andRadioButton);
+        buttonGroup.add(this.orRadioButton);
     }
 }
