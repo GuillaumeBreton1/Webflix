@@ -3,18 +3,17 @@ package gui.recherche.pageRecherche;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ResultatsPanel extends JPanel {
 
-    private ArrayList<String> resultats;
     private DefaultListModel listModel;
     private JList<String> listeResultats;
     private JScrollPane resultatsPane;
     private String filmChoisi;
 
-    public ResultatsPanel(ArrayList<String> resultats) {
-        this.resultats = resultats;
+    public ResultatsPanel() {
         this.listModel = new DefaultListModel();
         this.listeResultats = new JList(listModel);
         this.resultatsPane = new JScrollPane(listeResultats);
@@ -24,9 +23,10 @@ public class ResultatsPanel extends JPanel {
         this.add(resultatsPane);
     }
 
-    public void montrerResultats() {
+    public void montrerResultats(ArrayList<String> resultats) {
+
         listModel.clear();
-        for(String resultat : this.resultats) {
+        for(String resultat : resultats) {
             listModel.addElement(resultat);
         }
     }

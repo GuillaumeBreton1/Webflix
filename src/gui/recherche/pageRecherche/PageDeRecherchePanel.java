@@ -28,21 +28,25 @@ public class PageDeRecherchePanel extends JPanel {
     public PageDeRecherchePanel() {
         this.titreRecherchePanel = new TitreRecherchePanel();
         this.barreDeRecherchePanel = new BarreDeRecherchePanel();
-        this.resultatsPanel = new ResultatsPanel(liste);
+        this.resultatsPanel = new ResultatsPanel();
         this.setLayout(new BorderLayout(10, 10));
         this.add(this.titreRecherchePanel, BorderLayout.NORTH);
         this.add(this.barreDeRecherchePanel, BorderLayout.WEST);
         this.add(this.resultatsPanel, BorderLayout.CENTER);
-        this.setUpBoutonRechercheListener(this.resultatsPanel, this);
+        this.setUpBoutonRechercheListener(this.resultatsPanel, this, this.liste);
     }
 
-    public void setUpBoutonRechercheListener(ResultatsPanel resultatsPanel, JPanel jPanel) {
+    public void setUpBoutonRechercheListener(ResultatsPanel resultatsPanel, JPanel jPanel, ArrayList<String> liste) {
         this.barreDeRecherchePanel.getBoutonRecherche().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                resultatsPanel.montrerResultats();
-                jPanel.validate();
-                jPanel.repaint();
+                if(!liste.isEmpty()) {
+                    resultatsPanel.montrerResultats(liste);
+                    jPanel.validate();
+                    jPanel.repaint();
+                } else {
+                    JOptionPane.showMessageDialog(jPanel, "Aucun résultat n'a été trouvé pour ses critères");
+                }
             }
         });
     }
