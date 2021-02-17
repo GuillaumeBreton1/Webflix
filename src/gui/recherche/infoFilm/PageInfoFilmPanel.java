@@ -13,7 +13,7 @@ public class PageInfoFilmPanel extends JPanel {
         this.titreInfoFilmPanel = new TitreInfoFilmPanel();
         this.infoFilmPanel = new InfoFilmPanel();
         this.setLayout(new BorderLayout(10, 10));
-        this.setBorder(new EmptyBorder(0, 40, 0, 40));
+        this.setBorder(new EmptyBorder(0, 40, 40, 40));
         this.add(this.titreInfoFilmPanel, BorderLayout.NORTH);
         this.add(this.infoFilmPanel);
     }

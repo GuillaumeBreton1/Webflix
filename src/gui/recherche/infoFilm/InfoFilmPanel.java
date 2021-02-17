@@ -3,6 +3,7 @@ package gui.recherche.infoFilm;
 import gui.recherche.Listener.PersonneListener;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -24,28 +25,23 @@ public class InfoFilmPanel extends JPanel {
     private JPanel infoDuFilmPanel;
     private JLabel titre;
     private JLabel annee;
-    private JLabel pays;
     private JLabel langue;
     private JLabel duree;
-    private JLabel genres;
     private JLabel realisateur;
-    private JLabel scenaristes;
-    private JLabel acteurs;
     private JLabel resume;
     private JLabel affiche;
+    private JLabel pays;
+    private JLabel genres;
+    private JLabel scenaristes;
+    private JLabel acteurs;
     private JLabel bandesAnnonces;
-
-    // Pour plus tard
-//    private JPanel genres;
-//    private JPanel scenaristes;
-//    private JPanel acteurs;
-//    private JPanel bandeAnnonces;
-
 
     public InfoFilmPanel() {
         this.setLayout(new BorderLayout());
         this.initFixPanel();
         this.initInfoDuFilmPanel();
+        this.setBackground(Color.WHITE);
+        this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY.darker()));
         this.add(this.fixPanel, BorderLayout.WEST);
         this.add(this.infoDuFilmPanel);
     }
@@ -65,6 +61,8 @@ public class InfoFilmPanel extends JPanel {
         JLabel bandesAnnoncesF = new JLabel(BANDES_ANNONCES);
 
         this.fixPanel = new JPanel();
+        this.fixPanel.setBackground(Color.WHITE);
+        this.fixPanel.setBorder(new EmptyBorder(0, 10, 0, 0));
         this.fixPanel.setLayout(new GridLayout(12, 1));
         this.fixPanel.setPreferredSize(new Dimension(200, 700));
         this.fixPanel.add(titreF);
@@ -94,11 +92,13 @@ public class InfoFilmPanel extends JPanel {
         this.resume = new JLabel();
         this.affiche = new JLabel();
         this.bandesAnnonces = new JLabel();
-        this.realisateur.setForeground(Color.BLUE.darker());
-        this.scenaristes.setForeground(Color.BLUE.darker());
-        this.acteurs.setForeground(Color.BLUE.darker());
+        this.realisateur.setForeground(Color.BLUE);
+        this.scenaristes.setForeground(Color.BLUE);
+        this.acteurs.setForeground(Color.BLUE);
 
         this.infoDuFilmPanel = new JPanel();
+        this.infoDuFilmPanel.setBackground(Color.WHITE);
+        this.infoDuFilmPanel.setBorder(new EmptyBorder(0, 0, 0, 10));
         this.infoDuFilmPanel.setLayout(new GridLayout(12, 1));
         this.infoDuFilmPanel.add(this.titre);
         this.infoDuFilmPanel.add(this.annee);
@@ -115,12 +115,12 @@ public class InfoFilmPanel extends JPanel {
     }
 
     public void setInfoDuFilm(/*Film film*/) {
-        this.titre.setText("test");
-        this.annee.setText("est");
-        this.pays.setText("hfjjkh");
+        this.titre.setText("Test test");
+        this.annee.setText("2000");
+        this.pays.setText("Canada");
         this.langue.setText("fkhhhjj");
         this.duree.setText("ueujj");
-        this.genres.setText("shhkhk");
+        this.genres.setText("test");
         this.realisateur.setText("kslllllllllllllllllllllllllllllllllllllllllllllllllllhkjkh");
         this.scenaristes.setText("oppip");
         this.acteurs.setText("lbkjk (Role) ");

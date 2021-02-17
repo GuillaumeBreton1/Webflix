@@ -12,9 +12,8 @@ public class PageInfoPersonnePanel extends JPanel {
     public PageInfoPersonnePanel() {
         this.titreInfoPersonnePanel = new TitreInfoPersonnePanel();
         this.infoPersonnePanel = new InfoPersonnePanel();
-        this.infoPersonnePanel.setBorder(new EmptyBorder(0, 10, 0,10));
         this.setLayout(new BorderLayout(10, 10));
-        this.setBorder(new EmptyBorder(0, 40, 0, 40));
+        this.setBorder(new EmptyBorder(0, 40, 40, 40));
         this.add(this.titreInfoPersonnePanel, BorderLayout.NORTH);
         this.add(this.infoPersonnePanel);
     }

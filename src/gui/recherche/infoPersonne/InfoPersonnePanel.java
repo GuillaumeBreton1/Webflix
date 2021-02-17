@@ -1,6 +1,7 @@
 package gui.recherche.infoPersonne;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class InfoPersonnePanel extends JPanel {
@@ -21,11 +22,12 @@ public class InfoPersonnePanel extends JPanel {
 
 
     public InfoPersonnePanel() {
-        this.setLayout(new GridLayout(1, 2));
+        this.setLayout(new BorderLayout());
         this.initFixPanel();
         this.initInfoDuFilmPanel();
-        this.fixPanel.setPreferredSize(new Dimension(200, 700));
-        this.add(this.fixPanel);
+        this.setBackground(Color.WHITE);
+        this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+        this.add(this.fixPanel, BorderLayout.WEST);
         this.add(this.infoDeLaPersonnePanel);
     }
 
@@ -37,7 +39,10 @@ public class InfoPersonnePanel extends JPanel {
         JLabel biographieF = new JLabel(BIOGRAPHIE);
 
         this.fixPanel = new JPanel();
+        this.fixPanel.setBackground(Color.WHITE);
+        this.fixPanel.setBorder(new EmptyBorder(0, 10, 0, 0));
         this.fixPanel.setLayout(new GridLayout(12, 1));
+        this.fixPanel.setPreferredSize(new Dimension(200, 700));
         this.fixPanel.add(nomF);
         this.fixPanel.add(dateNaissanceF);
         this.fixPanel.add(lieuNaissancF);
@@ -53,6 +58,8 @@ public class InfoPersonnePanel extends JPanel {
         this.biographie = new JLabel();
 
         this.infoDeLaPersonnePanel = new JPanel();
+        this.infoDeLaPersonnePanel.setBackground(Color.WHITE);
+        this.infoDeLaPersonnePanel.setBorder(new EmptyBorder(0, 0, 0, 10));
         this.infoDeLaPersonnePanel.setLayout(new GridLayout(12, 1));
         this.infoDeLaPersonnePanel.add(this.nom);
         this.infoDeLaPersonnePanel.add(this.dateNaissance);
