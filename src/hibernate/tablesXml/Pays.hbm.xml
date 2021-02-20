@@ -9,7 +9,7 @@
             <generator class="assigned"/>
         </id>
         <property name="nom" type="string">
-            <column length="15" not-null="true" name="NOM"/>
+            <column length="15" not-null="true" unique="true" name="NOM"/>
         </property>
     </class>
 </hibernate-mapping>

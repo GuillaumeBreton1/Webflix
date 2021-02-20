@@ -18,7 +18,7 @@
             <column length="20" not-null="true" name="MOTDEPASSE"/>
         </property>
         <property name="courriel" type="string">
-            <column length="50" not-null="true" name="COURRIEL"/>
+            <column length="50" not-null="true" unique="true" name="COURRIEL"/>
         </property>
         <property name="numeroTelephone" type="string">
             <column length="12" not-null="true" name="NUMEROTELEPHONE"/>
