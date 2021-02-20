@@ -1,24 +1,41 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class name="Course" table="COURSE">
-  <id name="courseId" type="int">
-   <column name="COURSE_ID" scale="0"/>
-   <generator class="assigned"/>
-  </id>
-  <property generated="never" lazy="false" name="courseName" type="string">
-   <column length="1020" name="COURSE_NAME"/>
-  </property>
-  <set fetch="select" inverse="true" lazy="true" name="students"
-   sort="unsorted" table="STUDENT_COURSE">
-   <key>
-    <column name="COURSE_ID" not-null="true" scale="0"/>
-   </key>
-   <many-to-many entity-name="Student" unique="false">
-    <column name="STUDENT_ID" not-null="true" scale="0"/>
-   </many-to-many>
-  </set>
- </class>
+    <class name="Utilisateur" table="UTILISATEUR">
+        <id name="id" type="int">
+            <column name="ID" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="prenom" type="string">
+            <column length="50" not-null="true" name="PRENOM"/>
+        </property>
+        <property name="nomDeFamille" type="string">
+            <column length="50" not-null="true" name="NOMDEFAMILLE"/>
+        </property>
+        <property name="motDePasse" type="string">
+            <column length="20" not-null="true" name="MOTDEPASSE"/>
+        </property>
+        <property name="courriel" type="string">
+            <column length="50" not-null="true" name="COURRIEL"/>
+        </property>
+        <property name="numeroTelephone" type="string">
+            <column length="12" not-null="true" name="NUMEROTELEPHONE"/>
+        </property>
+        <property name="dateNaissance" column="DATENAISSANCE" not-null="true" type="Date"/>
+        <property name="numeroCivique" column="NUMEROCIVIQUE" not-null="true" type="int"/>
+        <property name="rue" type="string">
+            <column length="50" not-null="true" name="RUE"/>
+        </property>
+        <property name="ville" type="string">
+            <column length="50" not-null="true" name="VILLE"/>
+        </property>
+        <property name="province" type="string">
+            <column length="20" not-null="true" name="PROVINCE"/>
+        </property>
+        <property name="codePostal" type="string">
+            <column length="7" not-null="true" name="CODEPOSTAL"/>
+        </property>
+    </class>
 </hibernate-mapping>

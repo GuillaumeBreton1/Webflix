@@ -1,24 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class name="Course" table="COURSE">
-  <id name="courseId" type="int">
-   <column name="COURSE_ID" scale="0"/>
-   <generator class="assigned"/>
-  </id>
-  <property generated="never" lazy="false" name="courseName" type="string">
-   <column length="1020" name="COURSE_NAME"/>
-  </property>
-  <set fetch="select" inverse="true" lazy="true" name="students"
-   sort="unsorted" table="STUDENT_COURSE">
-   <key>
-    <column name="COURSE_ID" not-null="true" scale="0"/>
-   </key>
-   <many-to-many entity-name="Student" unique="false">
-    <column name="STUDENT_ID" not-null="true" scale="0"/>
-   </many-to-many>
-  </set>
- </class>
+    <class name="PersonnalitePublique" table="PERSONNALITEPUBLIQUE">
+        <id name="id" type="int">
+            <column name="ID" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nom" type="string">
+            <column length="50" not-null="true" name="NOM"/>
+        </property>
+        <property name="dateNaissance" column="DATENAISSANCE" type="Date"/>
+        <property name="provenance" type="string">
+            <column length="100" name="PROVENANCE"/>
+        </property>
+        <property name="lienPhoto" type="string">
+            <column length="500" name="LIENPHOTO"/>
+        </property>
+        <property name="biographie" type="clob">
+            <column length="10000" name="BIOGRAPHIE"/>
+        </property>
+        <many-to-one name="typePersonne" column="TYPEPERSONNE" class="TypePersonne"/>
+    </class>
 </hibernate-mapping>
+
