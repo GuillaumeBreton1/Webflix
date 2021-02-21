@@ -6,7 +6,6 @@
     <class name="backend.hibernate.tableMapping.TypePersonne" table="TYPEPERSONNE">
         <id name="code" type="int">
             <column name="CODE" scale="0"/>
-            <generator class="assigned"/>
         </id>
         <property name="nom" type="string">
             <column length="15" not-null="true" name="NOM"/>

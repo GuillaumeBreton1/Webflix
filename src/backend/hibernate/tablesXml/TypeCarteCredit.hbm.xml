@@ -6,7 +6,6 @@
     <class name="backend.hibernate.tableMapping.TypeCarteCredit" table="TYPECARTECREDIT">
         <id name="numero" type="int">
             <column name="NUMERO" scale="0"/>
-            <generator class="assigned"/>
         </id>
         <property name="nom" type="string">
             <column length="10" not-null="true" name="NOM"/>

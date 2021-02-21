@@ -6,7 +6,7 @@
  <class name="backend.hibernate.tableMapping.Genre" table="GENRE">
   <id name="id" type="int">
    <column name="ID" scale="0"/>
-   <generator class="assigned"/>
+   <generator class="increment"/>
   </id>
   <property name="nom" column="NOM" type="string" not-null="true"/>
  </class>

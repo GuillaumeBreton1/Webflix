@@ -6,7 +6,7 @@
     <class name="backend.hibernate.tableMapping.Scenariste" table="Scenariste">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="assigned"/>
+            <generator class="increment"/>
         </id>
         <property name="nom" type="string">
             <column length="100" not-null="true" unique="true" name="NOM"/>

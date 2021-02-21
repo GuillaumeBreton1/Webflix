@@ -12,6 +12,8 @@ public class CarteCredit {
 
     private Integer cvv;
 
+    private Client client;
+
     public Long getNumero() {
         return numero;
     }
@@ -42,5 +44,13 @@ public class CarteCredit {
 
     public void setCvv(Integer cvv) {
         this.cvv = cvv;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

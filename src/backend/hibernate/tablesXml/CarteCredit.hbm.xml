@@ -9,7 +9,7 @@
         </id>
         <property name="dateExpiration" column="DATEEXPIRATION" type="date"/>
         <property name="cvv" column="CVV" type="int"/>
-        <many-to-one name="typeCarte" class="backend.hibernate.tableMapping.TypeCarteCredit"
+        <many-to-one name="typeCarteCredit" class="backend.hibernate.tableMapping.TypeCarteCredit"
                      column="TYPECARTE" not-null="true"/>
         <one-to-one name="client" class="backend.hibernate.tableMapping.Client" constrained="true"/>
     </class>

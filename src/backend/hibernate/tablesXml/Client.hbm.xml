@@ -6,7 +6,9 @@
     <class name="backend.hibernate.tableMapping.Client" table="CLIENT">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="assigned"/>
+            <generator class="foreign">
+            <param name="property">utilisateur</param>
+            </generator>
         </id>
         <many-to-one name="forfait" class="backend.hibernate.tableMapping.Forfait"
                      column="idForfait" not-null="true"/>

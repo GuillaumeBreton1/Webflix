@@ -6,7 +6,9 @@
     <class name="backend.hibernate.tableMapping.Employe" table="EMPLOYE">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="assigned"/>
+            <generator class="foreign">
+                <param name="property">utilisateur</param>
+            </generator>
         </id>
         <property name="matricule" column="MATRICULE" type="int" not-null="true" unique="true"/>
     </class>

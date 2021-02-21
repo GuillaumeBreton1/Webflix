@@ -6,7 +6,7 @@
     <class name="backend.hibernate.tableMapping.Exemplaire" table="EXEMPLAIRE">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="assigned"/>
+            <generator class="increment"/>
         </id>
         <property name="dateAchat" column="DATEACHAT" type="date" not-null="true"/>
         <property name="disponibilite" column="DISPONIBILITE" type="int" not-null="true"/>

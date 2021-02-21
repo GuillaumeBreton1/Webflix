@@ -6,7 +6,7 @@
     <class name="backend.hibernate.tableMapping.Location" table="LOCATION">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="assigned"/>
+            <generator class="increment"/>
         </id>
         <property name="dateLocation" column="DATELOCATION" not-null="true" type="date"/>
         <property name="dateRetour" column="DATERETOUR" type="date"/>

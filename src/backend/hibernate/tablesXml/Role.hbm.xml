@@ -6,10 +6,10 @@
     <class name="backend.hibernate.tableMapping.Role" table="Role">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="assigned"/>
+            <generator class="increment"/>
         </id>
-        <many-to-one name="idActeur" column="IDACTEUR" class="backend.hibernate.tableMapping.PersonnalitePublique" not-null="true"/>
-        <many-to-one name="idFilm" column="IDFILM" class="backend.hibernate.tableMapping.Film" not-null="true"/>
+        <many-to-one name="acteur" column="IDACTEUR" class="backend.hibernate.tableMapping.PersonnalitePublique" not-null="true"/>
+        <many-to-one name="film" column="IDFILM" class="backend.hibernate.tableMapping.Film" not-null="true"/>
         <property name="nom" type="string">
             <column length="500" not-null="true" name="NOM"/>
         </property>

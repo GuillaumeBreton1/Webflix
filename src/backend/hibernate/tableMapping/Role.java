@@ -4,7 +4,7 @@ public class Role {
 
     private Integer id;
 
-    private PersonnalitePublique personnalitePublique;
+    private PersonnalitePublique acteur;
 
     private Film film;
 
@@ -18,12 +18,12 @@ public class Role {
         this.id = id;
     }
 
-    public PersonnalitePublique getPersonnalitePublique() {
-        return personnalitePublique;
+    public PersonnalitePublique getActeur() {
+        return acteur;
     }
 
-    public void setPersonnalitePublique(PersonnalitePublique personnalitePublique) {
-        this.personnalitePublique = personnalitePublique;
+    public void setActeur(PersonnalitePublique acteur) {
+        this.acteur = acteur;
     }
 
     public Film getFilm() {

@@ -3,10 +3,10 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="backend/hibernate/tableMapping/Film" table="FILM">
+    <class name="backend.hibernate.tableMapping.Film" table="FILM">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="assigned"/>
+            <generator class="increment"/>
         </id>
         <property name="titre" column="TITRE" type="string" not-null="true"/>
         <property name="dateSortie" column="DATESORTIE" type="int" not-null="true"/>
@@ -14,19 +14,19 @@
         <property name="duree" column="DUREE" type="int" not-null="true"/>
         <property name="lienAffiche" column="LIENAFFICHE" type="string" not-null="false"/>
         <property name="resumeScenario" column="RESUMESCENARIO" type="string" length="4000" not-null="false"/>
-        <many-to-one name="realisateur" class="backend/hibernate/tableMapping/PersonnalitePublique"
+        <many-to-one name="realisateur" class="backend.hibernate.tableMapping.PersonnalitePublique"
                      column="idRealisateur" not-null="true"/>
         <set name="genres" table="FILMGENRE" cascade="save-update">
             <key column="IDFILM"/>
-            <many-to-many column="IDGENRE" class="backend/hibernate/tableMapping/Genre"/>
+            <many-to-many column="IDGENRE" class="backend.hibernate.tableMapping.Genre"/>
         </set>
         <set name="pays" table="FILMPAYS" cascade="save-update">
             <key column="IDFILM"/>
-            <many-to-many column="IDPAYS" class="backend/hibernate/tableMapping/Pays"/>
+            <many-to-many column="IDPAYS" class="backend.hibernate.tableMapping.Pays"/>
         </set>
         <set name="scenaristes" table="FILMSCENARISTES" cascade="save-update">
             <key column="IDFILM"/>
-            <many-to-many column="IDSCENARISTE" class="backend/hibernate/tableMapping/Scenariste"/>
+            <many-to-many column="IDSCENARISTE" class="backend.hibernate.tableMapping.Scenariste"/>
         </set>
     </class>
 </hibernate-mapping>
