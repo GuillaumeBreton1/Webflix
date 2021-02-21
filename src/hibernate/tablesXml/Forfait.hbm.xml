@@ -3,22 +3,13 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class name="Course" table="COURSE">
-  <id name="courseId" type="int">
-   <column name="COURSE_ID" scale="0"/>
-   <generator class="assigned"/>
+ <class name="Forfait" table="FORFAIT">
+  <id name="code" type="char">
+   <column name="CODE" scale="0"/>
   </id>
-  <property generated="never" lazy="false" name="courseName" type="string">
-   <column length="1020" name="COURSE_NAME"/>
-  </property>
-  <set fetch="select" inverse="true" lazy="true" name="students"
-   sort="unsorted" table="STUDENT_COURSE">
-   <key>
-    <column name="COURSE_ID" not-null="true" scale="0"/>
-   </key>
-   <many-to-many entity-name="Student" unique="false">
-    <column name="STUDENT_ID" not-null="true" scale="0"/>
-   </many-to-many>
-  </set>
+  <property name="nom" column="NOM" type="String"/>
+  <property name="cout" column="COUT" type="int"/>
+  <property name="locationMax" column="LOCATIONMAX" type="int"/>
+  <property name="dureeMax" column="DUREEMAX" type="int"/>
  </class>
 </hibernate-mapping>

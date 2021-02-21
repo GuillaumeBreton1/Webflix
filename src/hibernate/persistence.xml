@@ -1,8 +1,0 @@
-<persistence-unit name="NewPersistenceUnit">
-    <properties>
-        <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
-        <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@log660ora12c.logti.etsmtl.ca:1521:LOG660" />
-        <property name="javax.persistence.jdbc.user" value="EQUIPE107" />
-        <property name="javax.persistence.jdbc.password" value="yvScmSsz" />
-    </properties>
-</persistence-unit>

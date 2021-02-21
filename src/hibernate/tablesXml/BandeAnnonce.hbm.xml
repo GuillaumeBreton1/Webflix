@@ -6,10 +6,12 @@
     <class name="BandeAnnonce" table="BANDEANNONCE">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
-            <generator class="increment"/>
+            <generator class="native"/>
         </id>
-        <property name="id" column="ID"/>
-        <property name="lien" column="LIEN"/>
-        <one-to-one name=""
+        <property name="lien" type="String">
+            <column name="LIEN" length="1000"></column>
+        </property>
+        <many-to-one name="film" class="Film"
+            column="idFilm" not-null="true"/>
     </class>
 </hibernate-mapping>
