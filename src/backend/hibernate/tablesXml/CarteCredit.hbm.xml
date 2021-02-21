@@ -3,14 +3,14 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="backend/hibernate/tableMapping/CarteCredit" table="CARTECREDIT">
+    <class name="backend.hibernate.tableMapping.CarteCredit" table="CARTECREDIT">
         <id name="numero" type="long">
             <column name="NUMERO" scale="0"/>
         </id>
         <property name="dateExpiration" column="DATEEXPIRATION" type="date"/>
         <property name="cvv" column="CVV" type="int"/>
-        <many-to-one name="typeCarte" class="backend/hibernate/tableMapping/TypeCarteCredit"
+        <many-to-one name="typeCarte" class="backend.hibernate.tableMapping.TypeCarteCredit"
                      column="TYPECARTE" not-null="true"/>
-        <one-to-one name="client" class="backend/hibernate/tableMapping/Client" constrained="true"/>
+        <one-to-one name="client" class="backend.hibernate.tableMapping.Client" constrained="true"/>
     </class>
 </hibernate-mapping>

@@ -3,15 +3,15 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="backend/hibernate/tableMapping/Location" table="LOCATION">
+    <class name="backend.hibernate.tableMapping.Location" table="LOCATION">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
             <generator class="assigned"/>
         </id>
         <property name="dateLocation" column="DATELOCATION" not-null="true" type="date"/>
         <property name="dateRetour" column="DATERETOUR" type="date"/>
-        <many-to-one name="idUtilisateur" column="IDUTILISATEUR" class="backend/hibernate/tableMapping/Client" not-null="true"/>
-        <many-to-one name="idExemplaire" column="IDEXEMPLAIRE" class="backend/hibernate/tableMapping/Exemplaire" not-null="true"/>
+        <many-to-one name="client" column="IDUTILISATEUR" class="backend.hibernate.tableMapping.Client" not-null="true"/>
+        <many-to-one name="exemplaire" column="IDEXEMPLAIRE" class="backend.hibernate.tableMapping.Exemplaire" not-null="true"/>
         <property name="etatLocation" column="ETATLOCATION" not-null="true" type="int"/>
     </class>
 </hibernate-mapping>

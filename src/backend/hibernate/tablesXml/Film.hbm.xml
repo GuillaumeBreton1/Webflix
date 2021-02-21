@@ -22,7 +22,7 @@
         </set>
         <set name="pays" table="FILMPAYS" cascade="save-update">
             <key column="IDFILM"/>
-            <many-to-many column="IDFILM" class="backend/hibernate/tableMapping/Pays"/>
+            <many-to-many column="IDPAYS" class="backend/hibernate/tableMapping/Pays"/>
         </set>
         <set name="scenaristes" table="FILMSCENARISTES" cascade="save-update">
             <key column="IDFILM"/>

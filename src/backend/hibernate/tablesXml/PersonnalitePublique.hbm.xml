@@ -3,7 +3,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="backend/hibernate/tableMapping/PersonnalitePublique" table="PERSONNALITEPUBLIQUE">
+    <class name="backend.hibernate.tableMapping.PersonnalitePublique" table="PERSONNALITEPUBLIQUE">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
             <generator class="assigned"/>
@@ -21,7 +21,7 @@
         <property name="biographie" type="clob">
             <column length="10000" name="BIOGRAPHIE"/>
         </property>
-        <many-to-one name="typePersonne" column="TYPEPERSONNE" class="backend/hibernate/tableMapping/TypePersonne"/>
+        <many-to-one name="typePersonne" column="TYPEPERSONNE" class="backend.hibernate.tableMapping.TypePersonne"/>
     </class>
 </hibernate-mapping>
 
