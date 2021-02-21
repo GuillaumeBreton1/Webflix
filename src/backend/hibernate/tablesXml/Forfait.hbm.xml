@@ -3,11 +3,11 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class name="backend.hibernate.tableMapping.Forfait" table="FORFAIT">
+ <class name="backend/hibernate/tableMapping/Forfait" table="FORFAIT">
   <id name="code" type="char">
    <column name="CODE" scale="0"/>
   </id>
-  <property name="nom" column="NOM" type="String"/>
+  <property name="nom" column="NOM" type="string"/>
   <property name="cout" column="COUT" type="int"/>
   <property name="locationMax" column="LOCATIONMAX" type="int"/>
   <property name="dureeMax" column="DUREEMAX" type="int"/>

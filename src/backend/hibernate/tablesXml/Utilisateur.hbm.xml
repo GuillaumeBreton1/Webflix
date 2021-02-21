@@ -3,7 +3,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="backend.hibernate.tableMapping.Utilisateur" table="UTILISATEUR">
+    <class name="backend/hibernate/tableMapping/Utilisateur" table="UTILISATEUR">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
             <generator class="assigned"/>
@@ -23,7 +23,7 @@
         <property name="numeroTelephone" type="string">
             <column length="12" not-null="true" name="NUMEROTELEPHONE"/>
         </property>
-        <property name="dateNaissance" column="DATENAISSANCE" not-null="true" type="Date"/>
+        <property name="dateNaissance" column="DATENAISSANCE" not-null="true" type="date"/>
         <property name="numeroCivique" column="NUMEROCIVIQUE" not-null="true" type="int"/>
         <property name="rue" type="string">
             <column length="50" not-null="true" name="RUE"/>

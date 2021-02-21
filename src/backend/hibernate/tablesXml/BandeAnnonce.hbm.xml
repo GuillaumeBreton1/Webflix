@@ -3,15 +3,15 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="backend.hibernate.tableMapping.BandeAnnonce" table="BANDEANNONCE">
+    <class name="backend/hibernate/tableMapping/BandeAnnonce" table="BANDEANNONCE">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
             <generator class="native"/>
         </id>
-        <property name="lien" type="String">
+        <property name="lien" type="string">
             <column name="LIEN" length="1000"></column>
         </property>
-        <many-to-one name="film" class="Film"
+        <many-to-one name="film" class="backend/hibernate/tableMapping/Film"
             column="idFilm" not-null="true"/>
     </class>
 </hibernate-mapping>

@@ -3,11 +3,11 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class name="backend.hibernate.tableMapping.Genre" table="GENRE">
+ <class name="backend/hibernate/tableMapping/Genre" table="GENRE">
   <id name="id" type="int">
    <column name="ID" scale="0"/>
    <generator class="assigned"/>
   </id>
-  <property name="nom" column="NOM" type="String" not-null="true"/>
+  <property name="nom" column="NOM" type="string" not-null="true"/>
  </class>
 </hibernate-mapping>
