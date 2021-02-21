@@ -1,9 +1,13 @@
-package hibernate.tableMapping;
-import javax.persistence.*;
+package backend.hibernate.tableMapping;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Scenariste")
-public class Scenariste {
+@Table(name = "Genre")
+public class Genre {
 
     @Id
     private Integer id;

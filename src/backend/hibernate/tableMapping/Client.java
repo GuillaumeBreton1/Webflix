@@ -1,7 +1,6 @@
-package hibernate.tableMapping;
+package backend.hibernate.tableMapping;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 @Table(name = "Client")

@@ -1,4 +1,4 @@
-package hibernate.tableMapping;
+package backend.hibernate.tableMapping;
 
 import javax.persistence.*;
 import java.util.Date;

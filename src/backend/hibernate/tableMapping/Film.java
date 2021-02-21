@@ -1,8 +1,6 @@
-package hibernate.tableMapping;
+package backend.hibernate.tableMapping;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
