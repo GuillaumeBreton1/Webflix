@@ -1,30 +1,14 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "Location")
 public class Location {
     
-    @Id
     private Integer id;
-
-    @Column(name = "dateLocation")
     private Date dateLocation;
-
-    @Column(name = "dateRetour")
     private Date dateRetour;
-
-    @ManyToOne
-    @JoinColumn(name = "idUtilisateur")
     private Client client;
-
-    @ManyToOne
-    @JoinColumn(name = "idExemplaire")
     private Exemplaire exemplaire;
-
-    @Column(name = "etatLocation")
     private Integer etatLocation;
 
     public Integer getId() {

@@ -1,15 +1,8 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "TypeCarteCredit")
 public class TypeCarteCredit {
 
-    @Column(name = "numero")
     private Integer numero;
-
-    @Column(name = "nom")
     private String nom;
 
     public Integer getNumero() {
