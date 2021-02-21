@@ -3,7 +3,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="TypePersonne" table="TYPEPERSONNE">
+    <class name="backend.hibernate.tableMapping.TypePersonne" table="TYPEPERSONNE">
         <id name="code" type="int">
             <column name="CODE" scale="0"/>
             <generator class="assigned"/>

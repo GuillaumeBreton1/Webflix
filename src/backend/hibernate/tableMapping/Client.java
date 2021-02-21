@@ -1,24 +1,13 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Client")
 public class Client {
 
-    @Id
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "id")
     private Utilisateur utilisateur;
 
-    @ManyToOne
-    @JoinColumn(name = "idForfait")
     private Forfait forfait;
 
-    @OneToOne
-    @JoinColumn(name = "numeroCarteCredit")
     private CarteCredit carteCredit;
 
     public Integer getId() {

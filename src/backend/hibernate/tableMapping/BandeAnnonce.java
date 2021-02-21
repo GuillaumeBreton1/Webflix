@@ -1,19 +1,11 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "BandeAnnonce")
 public class BandeAnnonce {
 
-    @Id
     private Integer id;
 
-    @Column(name = "lien")
     private String lien;
 
-    @ManyToOne
-    @JoinColumn(name = "idFilm")
     private Film film;
 
     public Integer getId() {

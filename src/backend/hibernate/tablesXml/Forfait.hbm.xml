@@ -3,7 +3,7 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class name="Forfait" table="FORFAIT">
+ <class name="backend.hibernate.tableMapping.Forfait" table="FORFAIT">
   <id name="code" type="char">
    <column name="CODE" scale="0"/>
   </id>

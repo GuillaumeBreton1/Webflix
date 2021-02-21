@@ -1,46 +1,31 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "Utilisateur")
 public class Utilisateur {
 
-    @Id
     private Integer id;
 
-    @Column(name = "prenom")
     private String prenom;
 
-    @Column(name = "nomDeFamille")
     private String nomDeFamille;
 
-    @Column(name = "motDePasse")
     private String motDePasse;
 
-    @Column(name = "courriel")
     private String courriel;
 
-    @Column(name = "numeroTelephone")
     private String numeroTelephone;
 
-    @Column(name = "dateNaissance")
     private Date dateNaissance;
 
-    @Column(name = "numeroCivique")
     private Integer numeroCivique;
 
-    @Column(name = "rue")
     private String rue;
 
-    @Column(name = "ville")
     private String ville;
 
-    @Column(name = "province")
     private String province;
 
-    @Column(name = "codePostal")
     private String codePostal;
 
     public Integer getId() {

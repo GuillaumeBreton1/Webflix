@@ -3,7 +3,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 3-Feb-2014 7:26:12 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="Role" table="Role">
+    <class name="backend.hibernate.tableMapping.Role" table="Role">
         <id name="id" type="int">
             <column name="ID" scale="0"/>
             <generator class="assigned"/>

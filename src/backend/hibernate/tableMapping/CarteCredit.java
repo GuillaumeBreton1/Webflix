@@ -1,23 +1,15 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.*;
 import java.sql.Date;
 
-@Entity
-@Table(name = "CarteCredit")
 public class CarteCredit {
 
-    @Column(name = "numero")
     private Long numero;
 
-    @ManyToOne
-    @JoinColumn(name = "typeCarte")
     private TypeCarteCredit typeCarteCredit;
 
-    @Column(name = "dateExpiration")
     private Date dateExpiration;
 
-    @Column(name = "cvv")
     private Integer cvv;
 
     public Long getNumero() {

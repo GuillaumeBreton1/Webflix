@@ -1,18 +1,9 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Genre")
 public class Genre {
 
-    @Id
     private Integer id;
 
-    @Column(name = "nom")
     private String nom;
 
     public Integer getId() {

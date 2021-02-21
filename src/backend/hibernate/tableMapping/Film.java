@@ -1,56 +1,29 @@
 package backend.hibernate.tableMapping;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name = "Film")
 public class Film {
 
-    @Id
     private Integer id;
 
-    @Column(name = "titre")
     private String titre;
 
-    @Column(name = "dateSortie")
     private Integer dateSortie;
 
-    @Column(name = "langueOriginale")
     private String langueOriginale;
 
-    @Column(name = "duree")
     private Integer duree;
 
-    @Column(name = "lienAffiche")
     private String lienAffiche;
 
-    @Column(name = "resumeScenario")
     private String resumeScenario;
 
-    @ManyToOne
-    @JoinColumn(name = "idRealisateur")
     private PersonnalitePublique realisateur;
 
-    @ManyToMany
-    @JoinTable(
-            name = "FilmGenre",
-            joinColumns = @JoinColumn(name = "idFilm"),
-            inverseJoinColumns = @JoinColumn(name = "idGenre"))
     private Set<Genre> genres;
 
-    @ManyToMany
-    @JoinTable(
-            name = "FilmPays",
-            joinColumns = @JoinColumn(name = "idFilm"),
-            inverseJoinColumns = @JoinColumn(name = "idPays"))
     private Set<Pays> pays;
 
-    @ManyToMany
-    @JoinTable(
-            name = "FilmScenariste",
-            joinColumns = @JoinColumn(name = "idFilm"),
-            inverseJoinColumns = @JoinColumn(name = "idScenariste"))
     private Set<Scenariste> scenaristes;
 
     public Integer getId() {
