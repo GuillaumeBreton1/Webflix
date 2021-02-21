@@ -9,6 +9,5 @@
             <generator class="assigned"/>
         </id>
         <property name="matricule" column="MATRICULE" type="int" not-null="true" unique="true"/>
-        <!--        UTILISATEUR-->
     </class>
 </hibernate-mapping>

@@ -11,6 +11,5 @@
         <many-to-one name="forfait" class="Forfait"
                      column="idForfait" not-null="true"/>
         <one-to-one name="carteCredit" class="CarteCredit" cascade="all"/>
-<!--        UTILISATEUR-->
     </class>
 </hibernate-mapping>
