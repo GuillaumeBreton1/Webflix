@@ -10,13 +10,17 @@ public class TitreRecherchePanel extends JPanel {
     private ImageIcon tooltipIcon;
     private JPanel tooltipPanel;
     private JPanel titrePanel;
+    private JButton logoutButton = new JButton("Logout");
 
+    
     public TitreRecherchePanel() {
         this.setUpTooltipPanel();
         this.setUpTitrePanel();
         this.setLayout(new BorderLayout());
         this.add(this.tooltipPanel, BorderLayout.WEST);
         this.add(this.titrePanel, BorderLayout.CENTER);
+        this.add(this.logoutButton, BorderLayout.EAST);
+
     }
 
     public void setUpTooltipPanel() {
@@ -35,5 +39,9 @@ public class TitreRecherchePanel extends JPanel {
         titre.setForeground(Color.GRAY);
         this.titrePanel = new JPanel();
         this.titrePanel.add(titre);
+    }
+
+    public JButton getLogoutButton(){
+        return this.logoutButton; 
     }
 }

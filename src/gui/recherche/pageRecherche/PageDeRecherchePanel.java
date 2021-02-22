@@ -25,6 +25,7 @@ public class PageDeRecherchePanel extends JPanel {
         }
     };
 
+
     public PageDeRecherchePanel() {
         this.titreRecherchePanel = new TitreRecherchePanel();
         this.barreDeRecherchePanel = new BarreDeRecherchePanel();
@@ -53,6 +54,10 @@ public class PageDeRecherchePanel extends JPanel {
 
     public ResultatsPanel getResultsPanel() {
         return this.resultatsPanel;
+    }
+
+    public JButton getLogoutButton(){
+        return this.titreRecherchePanel.getLogoutButton(); 
     }
 
 }

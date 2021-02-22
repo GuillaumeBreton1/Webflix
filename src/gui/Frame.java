@@ -1,6 +1,7 @@
 package gui;
 
 import gui.login.LoginPanel;
+import gui.recherche.Listener.PersonneListeListener;
 import gui.recherche.Listener.PersonneListener;
 import gui.recherche.infoFilm.PageInfoFilmPanel;
 import gui.recherche.infoPersonne.PageInfoPersonnePanel;
@@ -42,6 +43,7 @@ public class Frame extends JFrame {
         this.setUpListeResultatsSelectionListener(this.pageDeRecherchePanel.getResultsPanel(), this.card, this.cards, this.pageInfoFilmPanel);
         this.setUpPersonneMouseListener();
         this.setUpRetourMouseListener();
+        this.setUpLogoutActionListener(this.card, this.cards);
 
         this.cards.add(this.loginPanel);
         this.cards.add(this.pageDeRecherchePanel);
@@ -75,6 +77,21 @@ public class Frame extends JFrame {
         });
     }
 
+    public void setUpLogoutActionListener(CardLayout card, JPanel cars){
+
+        JButton logoutButton = this.pageDeRecherchePanel.getLogoutButton(); 
+        logoutButton.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                card.first(cards);
+            }
+
+        });
+
+    }
+
     public void setUpListeResultatsSelectionListener(ResultatsPanel resultatsPanel, CardLayout card, JPanel cards, PageInfoFilmPanel pageInfoFilmPanel) {
         this.pageDeRecherchePanel.getResultsPanel().getListeResultats().addListSelectionListener(e -> {
             if(e.getValueIsAdjusting() == false) {
@@ -88,7 +105,8 @@ public class Frame extends JFrame {
 
     public void setUpPersonneMouseListener() {
         this.pageInfoFilmPanel.getInfoFilmPanel().setUpPersonneMouseListener(
-                new PersonneListener(this.pageInfoPersonnePanel, this.card, this.cards));
+                new PersonneListener(this.pageInfoPersonnePanel, this.card, this.cards),
+                new PersonneListeListener(this.pageInfoPersonnePanel, this.card, this.cards));
 
     }
 

@@ -1,6 +1,8 @@
 package gui.recherche.infoFilm;
 
 import gui.recherche.Listener.PersonneListener;
+import gui.recherche.Listener.PersonneListeListener;
+
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -8,19 +10,32 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class InfoFilmPanel extends JPanel {
+
     private static final String TITRE = "Titre : ";
     private static final String ANNEE_SORTIE = "Année de sortie : ";
-    private static final String PAYS_PRODUCTION = "Pays de protduction : ";
+    private static final String PAYS_PRODUCTION = "Pays de production : ";
     private static final String LANGUE_ORIGINALE = "Langue originale : ";
     private static final String DUREE = "Durée : ";
     private static final String GENRES = "Genres : ";
     private static final String REALISATEUR = "Réalisateur : ";
-    private static final String SCENARISTES = "Snénaristes : ";
+    private static final String SCENARISTES = "Scénaristes : ";
     private static final String ACTEURS = "Acteurs : ";
     private static final String RESUME = "Résumé : ";
     private static final String AFFICHE = "Affiche : ";
     private static final String BANDES_ANNONCES = "Bandes-annonces : ";
 
+    // Attribut liste 
+    private static final String[] LISTE_PAYS = {"Action", "Horreur", "Comédie"};
+    private static final String[] LISTE_GENRES = {"Action", "Horreur", "Comédie"};
+    private static final String[] LISTE_ACTEURS = {"Action", "Horreur", "Comédie","Action", "Horreur", "Comédie"};
+    private static final String[] LISTE_SCENARISTES = {"Action", "Horreur", "Comédie","Action", "Horreur", "Comédie"};
+    private static final String[] LISTE_BANDE_ANNONCES = {"Action", "Horreur", "Comédie"};
+
+    // Scroller 
+    private JScrollPane acteursScroll;
+    private JScrollPane scenaristesScroll;
+
+    //JLabel
     private JPanel fixPanel;
     private JPanel infoDuFilmPanel;
     private JLabel titre;
@@ -32,9 +47,11 @@ public class InfoFilmPanel extends JPanel {
     private JLabel affiche;
     private JLabel pays;
     private JLabel genres;
-    private JLabel scenaristes;
-    private JLabel acteurs;
     private JLabel bandesAnnonces;
+
+    //JList
+    private JList scenaristes;
+    private JList acteurs;
 
     public InfoFilmPanel() {
         this.setLayout(new BorderLayout());
@@ -87,11 +104,23 @@ public class InfoFilmPanel extends JPanel {
         this.duree = new JLabel();
         this.genres = new JLabel();
         this.realisateur = new JLabel();
-        this.scenaristes = new JLabel();
-        this.acteurs = new JLabel();
         this.resume = new JLabel();
         this.affiche = new JLabel();
         this.bandesAnnonces = new JLabel();
+        
+        
+        // SCROLLERS 
+        this.scenaristes = new JList(LISTE_SCENARISTES);
+        this.acteurs = new JList(LISTE_ACTEURS);
+        this.scenaristes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        this.acteurs.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        this.scenaristes.setVisibleRowCount(-1);
+        this.acteurs.setVisibleRowCount(-1);
+        this.acteursScroll = new JScrollPane(this.acteurs); 
+        this.scenaristesScroll = new JScrollPane(this.scenaristes); 
+        this.acteursScroll.setPreferredSize(new Dimension(250, 80));
+        this.scenaristesScroll.setPreferredSize(new Dimension(250, 80));
+
         this.realisateur.setForeground(Color.BLUE);
         this.scenaristes.setForeground(Color.BLUE);
         this.acteurs.setForeground(Color.BLUE);
@@ -107,32 +136,59 @@ public class InfoFilmPanel extends JPanel {
         this.infoDuFilmPanel.add(this.duree);
         this.infoDuFilmPanel.add(this.genres);
         this.infoDuFilmPanel.add(this.realisateur);
-        this.infoDuFilmPanel.add(this.scenaristes);
-        this.infoDuFilmPanel.add(this.acteurs);
+        this.infoDuFilmPanel.add(this.scenaristesScroll);
+        this.infoDuFilmPanel.add(this.acteursScroll);
         this.infoDuFilmPanel.add(this.resume);
         this.infoDuFilmPanel.add(this.affiche);
         this.infoDuFilmPanel.add(this.bandesAnnonces);
     }
 
     public void setInfoDuFilm(/*Film film*/) {
+
+        //On set les attributs uniques
         this.titre.setText("Test test");
         this.annee.setText("2000");
-        this.pays.setText("Canada");
         this.langue.setText("fkhhhjj");
         this.duree.setText("ueujj");
-        this.genres.setText("test");
         this.realisateur.setText("kslllllllllllllllllllllllllllllllllllllllllllllllllllhkjkh");
-        this.scenaristes.setText("oppip");
-        this.acteurs.setText("lbkjk (Role) ");
         this.resume.setText("kndd");
         this.affiche.setText("skhkhk");
-        this.bandesAnnonces.setText("nkjk");
+
+        //On set les attributs en liste non selectionnable 
+        this.setInfoListe(LISTE_PAYS, this.pays);
+        this.setInfoListe(LISTE_BANDE_ANNONCES, this.bandesAnnonces);
+        this.setInfoListe(LISTE_GENRES, this.genres);
+
+
+
     }
 
-    public void setUpPersonneMouseListener(PersonneListener parsonneListener) {
-        this.realisateur.addMouseListener(parsonneListener);
-        this.scenaristes.addMouseListener(parsonneListener);
-        this.acteurs.addMouseListener(parsonneListener);
+    public void setInfoListe(String[] liste, JLabel label){
+
+        String listePays = new String(""); 
+        int i = 0; 
+
+        for(String p : liste){
+            i++; 
+            if(i < liste.length){
+                listePays += p + ", "; 
+            }else{
+                listePays += p; 
+            }
+
+        }
+
+        label.setText(listePays);
+    }
+
+    public void setUpJList(String[] liste, JList list){
+
+    }
+
+    public void setUpPersonneMouseListener(PersonneListener personneListener,PersonneListeListener personneListeListener) {
+        this.realisateur.addMouseListener(personneListener);
+        this.scenaristes.addMouseListener(personneListeListener);
+        this.acteurs.addMouseListener(personneListeListener);
     }
 
 }
