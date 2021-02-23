@@ -1,19 +1,19 @@
 package gui;
 
+import façade.LoginFacade;
 import gui.location.PageLocationPanel;
 import gui.login.LoginPanel;
 import gui.recherche.Listener.PersonneListeListener;
 import gui.recherche.Listener.PersonneListener;
+import gui.recherche.Listener.RetourListener;
+import gui.recherche.Listener.RetourLocationListener;
 import gui.recherche.infoFilm.PageInfoFilmPanel;
 import gui.recherche.infoPersonne.PageInfoPersonnePanel;
 import gui.recherche.pageRecherche.PageDeRecherchePanel;
 import gui.recherche.pageRecherche.ResultatsPanel;
-import gui.recherche.Listener.RetourListener;
-import gui.recherche.Listener.RetourLocationListener;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +30,7 @@ public class Frame extends JFrame {
     private PageDeRecherchePanel pageDeRecherchePanel;
     private PageInfoFilmPanel pageInfoFilmPanel;
     private PageInfoPersonnePanel pageInfoPersonnePanel;
-    private PageLocationPanel pageLocationPanel; 
+    private PageLocationPanel pageLocationPanel;
 
     public Frame() {
         this.card = new CardLayout();
@@ -39,7 +39,7 @@ public class Frame extends JFrame {
         this.pageDeRecherchePanel = new PageDeRecherchePanel();
         this.pageInfoFilmPanel = new PageInfoFilmPanel();
         this.pageInfoPersonnePanel = new PageInfoPersonnePanel();
-        this.pageLocationPanel = new PageLocationPanel(); 
+        this.pageLocationPanel = new PageLocationPanel();
 
         setTitle(TITRE_FENETRE);
         setLocationRelativeTo(null);
@@ -80,13 +80,17 @@ public class Frame extends JFrame {
                     utilisateur = userField.getText();
                     motDePasse = passwordField.getPassword();
 
-                    System.out.print(utilisateur + " " + motDePasse.toString());
+                    boolean loginFonctionnel = LoginFacade.login(utilisateur, motDePasse);
+                    if (!loginFonctionnel) {
+                        JOptionPane.showMessageDialog(loginPanel, "Erreur pour la connexion ",
+                                "Erreur dans le login!", JOptionPane.ERROR_MESSAGE);
+                        System.out.print(utilisateur + " " + motDePasse.toString());
+                    } else {
+                        loginPanel.clearTextField();
+                        card.next(cards);
+                    }
                 }
-
-                loginPanel.clearTextField();
-                card.next(cards);
             }
-
         });
     }
 
@@ -116,19 +120,19 @@ public class Frame extends JFrame {
         });
     }
 
-    public void setUpListeResultatsSelectionListener(ResultatsPanel resultatsPanel, CardLayout card, JPanel cards, 
+    public void setUpListeResultatsSelectionListener(ResultatsPanel resultatsPanel, CardLayout card, JPanel cards,
                                                      PageInfoFilmPanel pageInfoFilmPanel, PageDeRecherchePanel pageDeRecherchePanel) {
 
-        this.pageDeRecherchePanel.getResultsPanel().getListeResultats().addMouseListener(new MouseInputAdapter(){
-            
-			@Override
-			public void mouseClicked(MouseEvent e) {
+        this.pageDeRecherchePanel.getResultsPanel().getListeResultats().addMouseListener(new MouseInputAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 String filmChoisi = resultatsPanel.getListeResultats().getSelectedValue();
                 resultatsPanel.setFilmChoisi(filmChoisi);
                 pageInfoFilmPanel.setMovie(filmChoisi);
                 pageDeRecherchePanel.clearTextField();
                 card.next(cards);
-			}
+            }
         });
     }
 

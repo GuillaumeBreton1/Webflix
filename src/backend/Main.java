@@ -1,20 +1,28 @@
 package backend;
 
 import backend.hibernate.HibernateUtil;
-import backend.hibernate.tableMapping.Pays;
-import org.hibernate.*;
+import façade.LoginFacade;
+import gui.Frame;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class Main {
     public static void main(String[] args) {
         Session sessionMain = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-        try {
+        LoginFacade loginFacade = new LoginFacade();
+        loginFacade.setCurrentSession(sessionMain);
 
-            transaction = sessionMain.beginTransaction();
-            Pays paysTest = new Pays();
-            paysTest.setNom("canadatest");
-            sessionMain.save(paysTest);
-            transaction.commit();
+        Frame rf = new Frame();
+        try {
+            while (true) {
+                transaction = sessionMain.beginTransaction();
+                //Pays paysTest = new Pays();
+                //paysTest.setNom("canadatest");
+                //sessionMain.save(paysTest);
+                transaction.commit();
+            }
         } catch (HibernateException e) {
             transaction.rollback();
             e.printStackTrace();
@@ -24,3 +32,4 @@ public class Main {
     }
 
 }
+

@@ -3,7 +3,6 @@ package backend.hibernate.tableMapping;
 public class TypePersonne {
 
     private Integer code;
-
     private String nom;
 
     public Integer getCode() {
