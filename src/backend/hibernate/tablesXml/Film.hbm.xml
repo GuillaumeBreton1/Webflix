@@ -24,9 +24,13 @@
             <key column="IDFILM"/>
             <many-to-many column="IDPAYS" class="backend.hibernate.tableMapping.Pays"/>
         </set>
-        <set name="scenaristes" table="FILMSCENARISTES" cascade="save-update">
+        <set name="scenaristes" table="FILMSCENARISTE" cascade="save-update">
             <key column="IDFILM"/>
             <many-to-many column="IDSCENARISTE" class="backend.hibernate.tableMapping.Scenariste"/>
+        </set>
+        <set name="roles" table="ROLE" cascade="save-update" inverse="true" lazy="false">
+            <key column="IDFILM"/>
+            <one-to-many class="backend.hibernate.tableMapping.Role"/>
         </set>
     </class>
 </hibernate-mapping>

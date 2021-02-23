@@ -1,5 +1,6 @@
 package backend.hibernate.tableMapping;
 
+import java.sql.Clob;
 import java.util.Date;
 
 public class PersonnalitePublique {
@@ -9,7 +10,7 @@ public class PersonnalitePublique {
     private Date dateNaissance;
     private String provenance;
     private String lienPhoto;
-    private String biographie;
+    private Clob biographie;
     private TypePersonne typePersonne;
 
     public Integer getId() {
@@ -52,11 +53,11 @@ public class PersonnalitePublique {
         this.lienPhoto = lienPhoto;
     }
 
-    public String getBiographie() {
+    public Clob getBiographie() {
         return biographie;
     }
 
-    public void setBiographie(String biographie) {
+    public void setBiographie(Clob biographie) {
         this.biographie = biographie;
     }
 
