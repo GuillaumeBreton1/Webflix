@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BarreDeRecherchePanel extends JPanel {
     private static final String TITRE_FILM = "Titre";
@@ -118,4 +120,41 @@ public class BarreDeRecherchePanel extends JPanel {
         this.realisateurField.setText("");
         this.acteurField.setText("");
     }
+
+    public JTextField getGapAnneeField(){
+        return gapAnneeField; 
+    }
+
+    public List<Object> getDonnees(){
+                
+        List<Object> donnees = new ArrayList<Object>(); 
+
+        if(this.andRadioButton.isSelected()){
+            donnees.add(0, "AND");
+        }else{
+            donnees.add(0, "OR");
+        }
+
+        donnees.add(1, this.titreFilmField.getText().split(","));
+        String[] annees = new String[2]; 
+        annees = this.gapAnneeField.getText().split(";"); 
+        System.out.println("length=" + annees.length); 
+        if(annees.length > 1){
+            donnees.add(2, annees[0]);
+            donnees.add(3, annees[1]);
+        }else{
+            donnees.add(2, 1921);
+            donnees.add(3, 2021);
+        }
+
+        donnees.add(4, this.paysField.getText().split(","));
+        donnees.add(5, this.langueField.getText().split(","));
+        donnees.add(6, this.genreField.getText().split(","));
+        donnees.add(7, this.realisateurField.getText().split(","));
+        donnees.add(8, this.acteurField.getText().split(","));
+
+        return donnees; 
+
+    }
+
 }

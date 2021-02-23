@@ -34,13 +34,21 @@ public class PageDeRecherchePanel extends JPanel {
         this.add(this.titreRecherchePanel, BorderLayout.NORTH);
         this.add(this.barreDeRecherchePanel, BorderLayout.WEST);
         this.add(this.resultatsPanel, BorderLayout.CENTER);
-        this.setUpBoutonRechercheListener(this.resultatsPanel, this, this.liste);
+        this.setUpBoutonRechercheListener(this.resultatsPanel, this, this.liste, this.barreDeRecherchePanel);
     }
 
-    public void setUpBoutonRechercheListener(ResultatsPanel resultatsPanel, JPanel jPanel, ArrayList<String> liste) {
+    public void setUpBoutonRechercheListener(ResultatsPanel resultatsPanel, JPanel jPanel, ArrayList<String> liste,
+                                             BarreDeRecherchePanel barreDeRecherchePanel) {
         this.barreDeRecherchePanel.getBoutonRecherche().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!barreDeRecherchePanel.getGapAnneeField().getText().matches("^\\d{4};\\d{4}$") && 
+                   !barreDeRecherchePanel.getGapAnneeField().getText().isBlank()){
+
+                    JOptionPane.showMessageDialog(barreDeRecherchePanel, "La date doit être sous le format suivant : dateMinimum;dateMaximum",
+                                        "Erreur de format", JOptionPane.ERROR_MESSAGE);
+                }
+                System.out.println(barreDeRecherchePanel.getDonnees());
                 if(!liste.isEmpty()) {
                     // ICI POUR METTRE LA LISTE DES FILMS OBTENUES PAR SELECT SUR LA BD 
                     resultatsPanel.montrerResultats(liste);

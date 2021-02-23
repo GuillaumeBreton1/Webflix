@@ -37,8 +37,8 @@ public class LoginPanel extends JPanel{
 		// On place les components
 		userLabel.setBounds(30,40,120,40);
 		passwordLabel.setBounds(30,100,120,40);
-		userField.setBounds(170,45,100,30);
-		passwordField.setBounds(170,105,100,30);
+		userField.setBounds(170,45,300,30);
+		passwordField.setBounds(170,105,150,30);
 		loginButton.setBounds(100,200,100,30);
 		//On ajoute les actions listener
 
