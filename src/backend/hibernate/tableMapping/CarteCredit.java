@@ -5,13 +5,9 @@ import java.sql.Date;
 public class CarteCredit {
 
     private Long numero;
-
     private TypeCarteCredit typeCarteCredit;
-
     private Date dateExpiration;
-
     private Integer cvv;
-
     private Client client;
 
     public Long getNumero() {

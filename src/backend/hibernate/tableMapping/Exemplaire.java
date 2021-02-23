@@ -5,11 +5,8 @@ import java.sql.Date;
 public class Exemplaire {
 
     private Integer id;
-
     private Date dateAchat;
-
     private Film film;
-
     private Integer disponibilite;
 
     public Integer getId() {

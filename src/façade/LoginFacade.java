@@ -1,15 +1,16 @@
 package façade;
 
-import backend.hibernate.tableMapping.Utilisateur;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import java.util.List;
 
 public class LoginFacade {
 
     private String courriel;
     private char[] motDePasse;
     private static Session currentSession;
-    private Utilisateur userLogged;
+    private static Integer userLoggedId;
 
     public static boolean login(String courriel, char[] motDePasse){
         boolean loginFonctionnel = true;
@@ -19,6 +20,10 @@ public class LoginFacade {
             query.setString(1, String.valueOf(motDePasse));
             query.executeUpdate();
 
+            Query selectQuery = currentSession.createQuery("FROM Utilisateur U WHERE U.courriel = :userCourriel");
+            selectQuery.setString("userCourriel", courriel);
+            List resultatsUtilisateur = selectQuery.list();
+            userLoggedId = resultatsUtilisateur.indexOf(0);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -49,5 +54,12 @@ public class LoginFacade {
 
     public void setCurrentSession(Session currentSession) {
         LoginFacade.currentSession = currentSession;
+    }
+    public Integer getUserLoggedId() {
+        return userLoggedId;
+    }
+
+    public void setUserLoggedId(Integer userLoggedId) {
+        this.userLoggedId = userLoggedId;
     }
 }

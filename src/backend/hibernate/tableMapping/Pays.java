@@ -3,7 +3,6 @@ package backend.hibernate.tableMapping;
 public class Pays {
 
     private Integer id;
-
     private String nom;
 
     public Integer getId() {

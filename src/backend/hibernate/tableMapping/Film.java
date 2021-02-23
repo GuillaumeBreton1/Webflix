@@ -5,25 +5,15 @@ import java.util.Set;
 public class Film {
 
     private Integer id;
-
     private String titre;
-
     private Integer dateSortie;
-
     private String langueOriginale;
-
     private Integer duree;
-
     private String lienAffiche;
-
     private String resumeScenario;
-
     private PersonnalitePublique realisateur;
-
     private Set<Genre> genres;
-
     private Set<Pays> pays;
-
     private Set<Scenariste> scenaristes;
 
     public Integer getId() {

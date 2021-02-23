@@ -3,7 +3,6 @@ package backend.hibernate.tableMapping;
 public class TypeCarteCredit {
 
     private Integer numero;
-
     private String nom;
 
     public Integer getNumero() {

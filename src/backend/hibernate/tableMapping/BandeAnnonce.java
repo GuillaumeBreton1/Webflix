@@ -3,9 +3,7 @@ package backend.hibernate.tableMapping;
 public class BandeAnnonce {
 
     private Integer id;
-
     private String lien;
-
     private Film film;
 
     public Integer getId() {

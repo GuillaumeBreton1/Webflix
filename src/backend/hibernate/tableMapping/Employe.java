@@ -3,9 +3,7 @@ package backend.hibernate.tableMapping;
 public class Employe {
 
     private Integer id;
-
     private Utilisateur utilisateur;
-
     private Integer matricule;
 
     public Integer getId() {

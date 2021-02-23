@@ -5,17 +5,11 @@ import java.util.Date;
 public class PersonnalitePublique {
 
     private Integer id;
-
     private String nom;
-
     private Date dateNaissance;
-
     private String provenance;
-
     private String lienPhoto;
-
     private String biographie;
-
     private TypePersonne typePersonne;
 
     public Integer getId() {

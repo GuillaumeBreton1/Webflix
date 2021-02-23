@@ -5,15 +5,10 @@ import java.util.Date;
 public class Location {
 
     private Integer id;
-
     private Date dateLocation;
-
     private Date dateRetour;
-
     private Client client;
-
     private Exemplaire exemplaire;
-
     private Integer etatLocation;
 
     public Integer getId() {

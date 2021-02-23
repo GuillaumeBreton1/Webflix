@@ -5,27 +5,16 @@ import java.util.Date;
 public class Utilisateur {
 
     private Integer id;
-
     private String prenom;
-
     private String nomDeFamille;
-
     private String motDePasse;
-
     private String courriel;
-
     private String numeroTelephone;
-
     private Date dateNaissance;
-
     private Integer numeroCivique;
-
     private String rue;
-
     private String ville;
-
     private String province;
-
     private String codePostal;
 
     public Integer getId() {

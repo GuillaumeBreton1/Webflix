@@ -3,13 +3,9 @@ package backend.hibernate.tableMapping;
 public class Forfait {
 
     private Character code;
-
     private String nom;
-
     private Integer cout;
-
     private Integer locationMax;
-
     private Integer dureeMax;
 
     public Character getCode() {

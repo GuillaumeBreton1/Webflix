@@ -3,7 +3,6 @@ package backend.hibernate.tableMapping;
 public class Scenariste {
 
     private Integer id;
-
     private String nom;
 
     public Integer getId() {

@@ -3,11 +3,8 @@ package backend.hibernate.tableMapping;
 public class Role {
 
     private Integer id;
-
     private PersonnalitePublique acteur;
-
     private Film film;
-
     private String nom;
 
     public Integer getId() {

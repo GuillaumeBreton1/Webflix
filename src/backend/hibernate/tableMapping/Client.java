@@ -3,11 +3,8 @@ package backend.hibernate.tableMapping;
 public class Client {
 
     private Integer id;
-
     private Utilisateur utilisateur;
-
     private Forfait forfait;
-
     private CarteCredit carteCredit;
 
     public Integer getId() {
