@@ -1,6 +1,6 @@
 package gui;
 
-import façade.LoginFacade;
+import façade.Facade;
 import gui.location.PageLocationPanel;
 import gui.login.LoginPanel;
 import gui.recherche.Listener.PersonneListeListener;
@@ -80,7 +80,7 @@ public class Frame extends JFrame {
                     utilisateur = userField.getText();
                     motDePasse = passwordField.getPassword();
 
-                    boolean loginFonctionnel = LoginFacade.login(utilisateur, motDePasse);
+                    boolean loginFonctionnel = Facade.login(utilisateur, motDePasse);
                     if (!loginFonctionnel) {
                         JOptionPane.showMessageDialog(loginPanel, "Erreur pour la connexion ",
                                 "Erreur dans le login!", JOptionPane.ERROR_MESSAGE);

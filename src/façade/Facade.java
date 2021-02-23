@@ -5,12 +5,12 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-public class LoginFacade {
+public class Facade {
 
-    private String courriel;
-    private char[] motDePasse;
     private static Session currentSession;
     private static Integer userLoggedId;
+    private String courriel;
+    private char[] motDePasse;
 
     public static boolean login(String courriel, char[] motDePasse){
         boolean loginFonctionnel = true;
@@ -53,7 +53,7 @@ public class LoginFacade {
     }
 
     public void setCurrentSession(Session currentSession) {
-        LoginFacade.currentSession = currentSession;
+        Facade.currentSession = currentSession;
     }
     public Integer getUserLoggedId() {
         return userLoggedId;

@@ -1,7 +1,7 @@
 package backend;
 
 import backend.hibernate.HibernateUtil;
-import façade.LoginFacade;
+import façade.Facade;
 import gui.Frame;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) {
         Session sessionMain = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-        LoginFacade loginFacade = new LoginFacade();
-        loginFacade.setCurrentSession(sessionMain);
+        Facade facade = new Facade();
+        facade.setCurrentSession(sessionMain);
 
         Frame rf = new Frame();
         try {
