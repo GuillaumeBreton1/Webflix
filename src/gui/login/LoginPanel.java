@@ -59,5 +59,10 @@ public class LoginPanel extends JPanel{
 	public JButton getLoginButton() {
     	return this.loginButton;
 	}
+
+	public void clearTextField(){
+		this.userField.setText("");
+		this.passwordField.setText("");
+	}
     
 }

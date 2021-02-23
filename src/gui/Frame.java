@@ -1,5 +1,6 @@
 package gui;
 
+import gui.location.PageLocationPanel;
 import gui.login.LoginPanel;
 import gui.recherche.Listener.PersonneListeListener;
 import gui.recherche.Listener.PersonneListener;
@@ -8,11 +9,15 @@ import gui.recherche.infoPersonne.PageInfoPersonnePanel;
 import gui.recherche.pageRecherche.PageDeRecherchePanel;
 import gui.recherche.pageRecherche.ResultatsPanel;
 import gui.recherche.Listener.RetourListener;
+import gui.recherche.Listener.RetourLocationListener;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 public class Frame extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -25,6 +30,7 @@ public class Frame extends JFrame {
     private PageDeRecherchePanel pageDeRecherchePanel;
     private PageInfoFilmPanel pageInfoFilmPanel;
     private PageInfoPersonnePanel pageInfoPersonnePanel;
+    private PageLocationPanel pageLocationPanel; 
 
     public Frame() {
         this.card = new CardLayout();
@@ -33,37 +39,42 @@ public class Frame extends JFrame {
         this.pageDeRecherchePanel = new PageDeRecherchePanel();
         this.pageInfoFilmPanel = new PageInfoFilmPanel();
         this.pageInfoPersonnePanel = new PageInfoPersonnePanel();
+        this.pageLocationPanel = new PageLocationPanel(); 
 
         setTitle(TITRE_FENETRE);
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(DIMENSION);
 
-        this.setUpLoginActionListener(this.card, this.cards);
-        this.setUpListeResultatsSelectionListener(this.pageDeRecherchePanel.getResultsPanel(), this.card, this.cards, this.pageInfoFilmPanel);
+        this.setUpLoginActionListener(this.card, this.cards, this.loginPanel);
+        this.setUpListeResultatsSelectionListener(this.pageDeRecherchePanel.getResultsPanel(), this.card, this.cards,
+                this.pageInfoFilmPanel, this.pageDeRecherchePanel);
         this.setUpPersonneMouseListener();
         this.setUpRetourMouseListener();
         this.setUpLogoutActionListener(this.card, this.cards);
+        this.setUpLocationActionListener(this.card, this.cards);
 
-        this.cards.add(this.loginPanel);
-        this.cards.add(this.pageDeRecherchePanel);
-        this.cards.add(this.pageInfoFilmPanel);
-        this.cards.add(this.pageInfoPersonnePanel);
+        this.cards.add(this.loginPanel, "login");
+        this.cards.add(this.pageDeRecherchePanel, "recherche");
+        this.cards.add(this.pageInfoFilmPanel, "infofilm");
+        this.cards.add(this.pageInfoPersonnePanel, "infoperso");
+        this.cards.add(this.pageLocationPanel, "location");
+
         this.add(cards);
 
         this.setVisible(true);
     }
 
-    public void setUpLoginActionListener(CardLayout card, JPanel cars) {
+    public void setUpLoginActionListener(CardLayout card, JPanel cards, LoginPanel loginPanel) {
         JButton loginButton = this.loginPanel.getLoginButton();
         JTextField userField = this.loginPanel.getUserField();
         JPasswordField passwordField = this.loginPanel.getPasswordField();
-        loginButton.addActionListener(new ActionListener(){
+        loginButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(e.getSource() == loginButton){
+                if (e.getSource() == loginButton) {
                     String utilisateur;
                     char[] motDePasse;
                     utilisateur = userField.getText();
@@ -71,35 +82,53 @@ public class Frame extends JFrame {
 
                     System.out.print(utilisateur + " " + motDePasse.toString());
                 }
+
+                loginPanel.clearTextField();
                 card.next(cards);
             }
 
         });
     }
 
-    public void setUpLogoutActionListener(CardLayout card, JPanel cars){
+    public void setUpLogoutActionListener(CardLayout card, JPanel cards) {
 
-        JButton logoutButton = this.pageDeRecherchePanel.getLogoutButton(); 
-        logoutButton.addActionListener(new ActionListener(){
+        JButton logoutButton = this.pageDeRecherchePanel.getLogoutButton();
+        logoutButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 card.first(cards);
             }
-
         });
-
     }
 
-    public void setUpListeResultatsSelectionListener(ResultatsPanel resultatsPanel, CardLayout card, JPanel cards, PageInfoFilmPanel pageInfoFilmPanel) {
-        this.pageDeRecherchePanel.getResultsPanel().getListeResultats().addListSelectionListener(e -> {
-            if(e.getValueIsAdjusting() == false) {
+    public void setUpLocationActionListener(CardLayout card, JPanel cards) {
+
+        JButton locationButton = this.pageDeRecherchePanel.getLocationButton();
+        locationButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                card.show(cards, "location");
+            }
+        });
+    }
+
+    public void setUpListeResultatsSelectionListener(ResultatsPanel resultatsPanel, CardLayout card, JPanel cards, 
+                                                     PageInfoFilmPanel pageInfoFilmPanel, PageDeRecherchePanel pageDeRecherchePanel) {
+
+        this.pageDeRecherchePanel.getResultsPanel().getListeResultats().addMouseListener(new MouseInputAdapter(){
+            
+			@Override
+			public void mouseClicked(MouseEvent e) {
                 String filmChoisi = resultatsPanel.getListeResultats().getSelectedValue();
                 resultatsPanel.setFilmChoisi(filmChoisi);
                 pageInfoFilmPanel.setMovie(filmChoisi);
+                pageDeRecherchePanel.clearTextField();
                 card.next(cards);
-            }
+			}
         });
     }
 
@@ -114,7 +143,8 @@ public class Frame extends JFrame {
         this.pageInfoFilmPanel.getTitreInfoFilmPanel().setUpRetourMouseListener(
                 new RetourListener(this.card, this.cards));
         this.pageInfoPersonnePanel.getTitreInfoPersonnePanel().setUpRetourMouseListener(
-                new RetourListener(this.card, this.cards)
-        );
+                new RetourListener(this.card, this.cards));
+        this.pageLocationPanel.getTitreLocationPanel().setUpRetourMouseListener(
+                new RetourLocationListener(this.card, this.cards));
     }
 }

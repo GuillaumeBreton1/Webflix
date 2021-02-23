@@ -181,10 +181,6 @@ public class InfoFilmPanel extends JPanel {
         label.setText(listePays);
     }
 
-    public void setUpJList(String[] liste, JList list){
-
-    }
-
     public void setUpPersonneMouseListener(PersonneListener personneListener,PersonneListeListener personneListeListener) {
         this.realisateur.addMouseListener(personneListener);
         this.scenaristes.addMouseListener(personneListeListener);

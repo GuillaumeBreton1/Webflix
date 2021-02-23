@@ -108,4 +108,14 @@ public class BarreDeRecherchePanel extends JPanel {
         buttonGroup.add(this.andRadioButton);
         buttonGroup.add(this.orRadioButton);
     }
+
+    public void clearTextField(){
+        this.titreFilmField.setText("");
+        this.gapAnneeField.setText("");
+        this.paysField.setText("");
+        this.langueField.setText("");
+        this.genreField.setText("");
+        this.realisateurField.setText("");
+        this.acteurField.setText("");
+    }
 }

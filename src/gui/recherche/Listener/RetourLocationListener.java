@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class RetourListener extends MouseAdapter {
+public class RetourLocationListener extends MouseAdapter {
 
     private CardLayout card;
     private JPanel cards;
 
-    public RetourListener(CardLayout card, JPanel cards) {
+    public RetourLocationListener(CardLayout card, JPanel cards) {
         this.card = card;
         this.cards = cards;
     }
@@ -18,6 +18,6 @@ public class RetourListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         
-        this.card.previous(cards);
+        this.card.show(this.cards,"recherche");
     }
 }

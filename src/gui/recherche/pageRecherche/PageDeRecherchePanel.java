@@ -42,6 +42,7 @@ public class PageDeRecherchePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!liste.isEmpty()) {
+                    // ICI POUR METTRE LA LISTE DES FILMS OBTENUES PAR SELECT SUR LA BD 
                     resultatsPanel.montrerResultats(liste);
                     jPanel.validate();
                     jPanel.repaint();
@@ -58,6 +59,14 @@ public class PageDeRecherchePanel extends JPanel {
 
     public JButton getLogoutButton(){
         return this.titreRecherchePanel.getLogoutButton(); 
+    }
+
+    public JButton getLocationButton(){
+        return this.titreRecherchePanel.getLocationButton(); 
+    }
+
+    public void clearTextField(){
+        this.barreDeRecherchePanel.clearTextField();
     }
 
 }
