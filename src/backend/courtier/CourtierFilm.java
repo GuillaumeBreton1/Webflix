@@ -47,14 +47,31 @@ public class CourtierFilm {
 
         Transaction transaction = null;
         try {
-            List<Film> titleSearch = titles.isEmpty()?getAllFilms():listFromTitles(titles);
-            List<Film> dateSearch = listFromReleaseYear(dateSortie1, dateSortie2);
-            List<Film> countrySearch = pays.isEmpty()?getAllFilms():listFromCountries(pays);
-            List<Film> languageSearch = langue.isEmpty()?getAllFilms():listFromLanguages(langue);
-            List<Film> genreSearch = genre.isEmpty()?getAllFilms():listFromGenres(genre);
-            List<Film> realisateurSearch = realisateur.isEmpty()?getAllFilms():listFromRealisateur(realisateur);
-            List<Film> acteurSearch = acteur.isEmpty()?getAllFilms():listFromActeurs(acteur);
-
+            List<Film> titleSearch;
+            List<Film> dateSearch;
+            List<Film> countrySearch;
+            List<Film> languageSearch;
+            List<Film> genreSearch;
+            List<Film> realisateurSearch;
+            List<Film> acteurSearch;
+            if(condition) {
+                titleSearch = titles.isEmpty() ? getAllFilms() : listFromTitles(titles);
+                dateSearch = listFromReleaseYear(dateSortie1, dateSortie2);
+                countrySearch = pays.isEmpty() ? getAllFilms() : listFromCountries(pays);
+                languageSearch = langue.isEmpty() ? getAllFilms() : listFromLanguages(langue);
+                genreSearch = genre.isEmpty() ? getAllFilms() : listFromGenres(genre);
+                realisateurSearch = realisateur.isEmpty() ? getAllFilms() : listFromRealisateur(realisateur);
+                acteurSearch = acteur.isEmpty() ? getAllFilms() : listFromActeurs(acteur);
+            }
+            else{
+                titleSearch = titles.isEmpty() ? new ArrayList<Film>() : listFromTitles(titles);
+                dateSearch = listFromReleaseYear(dateSortie1, dateSortie2);
+                countrySearch = pays.isEmpty() ? new ArrayList<Film>() : listFromCountries(pays);
+                languageSearch = langue.isEmpty() ? new ArrayList<Film>() : listFromLanguages(langue);
+                genreSearch = genre.isEmpty() ? new ArrayList<Film>() : listFromGenres(genre);
+                realisateurSearch = realisateur.isEmpty() ? new ArrayList<Film>() : listFromRealisateur(realisateur);
+                acteurSearch = acteur.isEmpty() ? new ArrayList<Film>() : listFromActeurs(acteur);
+            }
             films = filterList(condition, titleSearch, dateSearch, countrySearch,
                     languageSearch, genreSearch, realisateurSearch, acteurSearch);
 
