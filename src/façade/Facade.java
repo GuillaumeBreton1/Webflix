@@ -41,6 +41,7 @@ public class Facade {
             loginFonctionnel= false;
         }finally {
             transaction.commit();
+            session.close();
         }
         return loginFonctionnel;
     }
@@ -56,6 +57,7 @@ public class Facade {
 
         }finally {
             transaction.commit();
+            session.close();
         }
         return films;
     }
@@ -70,6 +72,7 @@ public class Facade {
 
         }finally {
             transaction.commit();
+            session.close();
             return f;
         }
     }
