@@ -45,9 +45,12 @@ public class Facade {
         f.setDateSortie(1997);
         f.setTitre("Titanic");
         films.add(f);*/
-        courtierFilm =  new CourtierFilm(currentSession);
         films = (ArrayList<Film>) courtierFilm.getListFilms(params);
         return films; 
+    }
+
+    public static Film getInfoFilms(int id){
+        return courtierFilm.getFilmDetails(id);
     }
 
     public String getCourriel() {
@@ -72,6 +75,7 @@ public class Facade {
 
     public void setCurrentSession(Session currentSession) {
         Facade.currentSession = currentSession;
+        Facade.courtierFilm = new CourtierFilm(currentSession);
     }
     public Integer getUserLoggedId() {
         return userLoggedId;

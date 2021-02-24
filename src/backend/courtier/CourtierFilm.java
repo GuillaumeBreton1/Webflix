@@ -45,10 +45,10 @@ public class CourtierFilm {
         List<String> realisateur = (List<String>) params.get(7);
         List<String> acteur = (List<String>) params.get(8);
 
-        Transaction transaction = null;
+        //Transaction transaction = null;
         try {
 
-            transaction = session.beginTransaction();
+            //transaction = session.beginTransaction();
 
             List<Film> titleSearch;
             List<Film> dateSearch;
@@ -77,12 +77,11 @@ public class CourtierFilm {
             }
             films = filterList(condition, titleSearch, dateSearch, countrySearch,
                     languageSearch, genreSearch, realisateurSearch, acteurSearch);
+            //transaction.commit();
 
         } catch (HibernateException e) {
-            transaction.rollback();
+            //transaction.rollback();
             e.printStackTrace();
-        } finally {
-            transaction.commit();
         }
 
         return films;
@@ -90,19 +89,19 @@ public class CourtierFilm {
 
     public Film getFilmDetails(Integer idFilm){
 
-        session.beginTransaction();
+        //session.beginTransaction();
         Query query = session.createQuery(
-                "FROM FILM f " +
+                "FROM Film f " +
                         "WHERE f.id = :id");
         query.setInteger("id", idFilm);
         Film film = (Film) query.list().get(0);
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return film;
     }
 
     private List<Film> listFromTitles(List<String> titles){
         Map<Integer, Film> films = new HashMap<>();
-        session.beginTransaction();
+        //session.beginTransaction();
         for(String title : titles){
             title = "%" + title + "%";
 
@@ -114,23 +113,23 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return new ArrayList<>(films.values());
     }
 
     private List<Film> listFromReleaseYear(Integer date1, Integer date2){
-        session.beginTransaction();
+        //session.beginTransaction();
         Criteria criteria = getCriteria();
         criteria.add(Restrictions.between("dateSortie", date1, date2));
 
         List<Film> list = (List<Film>) criteria.list();
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return list;
     }
 
     private List<Film> listFromCountries(List<String> countries){
         Map<Integer, Film> films = new HashMap<>();
-        session.beginTransaction();
+        //session.beginTransaction();
         for(String country : countries){
             country = "%" + country + "%";
             Query query = session.createQuery(
@@ -142,33 +141,33 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return new ArrayList<Film>(films.values());
     }
 
     private List<Film> listFromGenres(List<String> genres){
         Map<Integer, Film> films = new HashMap<>();
-        session.beginTransaction();
+        //session.beginTransaction();
 
         for(String genre : genres){
             genre = "%" + genre + "%";
             Query query = session.createQuery(
-                    "FROM Pays p " +
-                            "WHERE UPPER(p.nom) LIKE UPPER(:nom)");
+                    "FROM Genre g " +
+                            "WHERE UPPER(g.nom) LIKE UPPER(:nom)");
             query.setParameter("nom", genre);
             List<Film> liste = new ArrayList(((Genre) query.uniqueResult()).getFilms());
             for(Film film : liste){
                 films.put(film.getId(), film);
             }
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return new ArrayList<Film>(films.values());
     }
 
     private List<Film> listFromLanguages(List<String> languages){
         Map<Integer, Film> films = new HashMap<>();
 
-        session.beginTransaction();
+        //session.beginTransaction();
         for(String language : languages){
             language = "%" + language + "%";
 
@@ -180,13 +179,13 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return new ArrayList<>(films.values());
     }
 
     private List<Film> listFromRealisateur(List<String> realisateurs){
         Map<Integer, Film> films = new HashMap<>();
-        session.beginTransaction();
+        //session.beginTransaction();
         for(String realisateur : realisateurs){
             realisateur = "%" + realisateur + "%";
 
@@ -200,13 +199,13 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return new ArrayList<>(films.values());
     }
 
     private List<Film> listFromActeurs(List<String> acteurs){
         Map<Integer, Film> films = new HashMap<>();
-        session.beginTransaction();
+        //session.beginTransaction();
         for(String acteur : acteurs){
             acteur = "%" + acteur + "%";
             Query query = session.createQuery(
@@ -219,7 +218,7 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return new ArrayList<Film>(films.values());
     }
 
@@ -290,10 +289,10 @@ public class CourtierFilm {
     }
 
     private List<Film> getAllFilms(){
-        session.beginTransaction();
+        //session.beginTransaction();
         Criteria criteria = getCriteria();
         List<Film> list = (List<Film>) criteria.list();
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         return list;
     }
 

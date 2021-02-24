@@ -29,4 +29,9 @@ public class BandeAnnonce {
     public void setFilm(Film film) {
         this.film = film;
     }
+
+    @Override
+    public String toString(){
+        return lien;
+    }
 }

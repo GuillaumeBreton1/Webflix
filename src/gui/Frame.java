@@ -1,5 +1,6 @@
 package gui;
 
+import backend.hibernate.tableMapping.Film;
 import façade.Facade;
 import gui.location.PageLocationPanel;
 import gui.login.LoginPanel;
@@ -82,8 +83,8 @@ public class Frame extends JFrame {
                     
                     boolean loginFonctionnel = Facade.login(utilisateur, motDePasse);
                     if (!loginFonctionnel) {
-                        JOptionPane.showMessageDialog(loginPanel, "Erreur pour la connexion ",
-                                "Erreur dans le login!", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(loginPanel, "Mauvaise combinaison de email/mot de passe",
+                                "Erreur de connexion!", JOptionPane.ERROR_MESSAGE);
                         System.out.print(utilisateur + " " + motDePasse.toString());
                     } else {
                         loginPanel.clearTextField();
@@ -127,11 +128,12 @@ public class Frame extends JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                /*String filmChoisi = resultatsPanel.getListeResultats().getSelectedValue();
-                resultatsPanel.setFilmChoisi(filmChoisi);
-                pageInfoFilmPanel.setMovie(filmChoisi);
+                int filmdID = resultatsPanel.getListeResultats().getSelectedValue().getId();
+                Film film = Facade.getInfoFilms(filmdID);
+                resultatsPanel.setFilmChoisi(film);
+                pageInfoFilmPanel.setMovie(film);
                 pageDeRecherchePanel.clearTextField();
-                card.next(cards);*/
+                card.next(cards);
             }
         });
     }

@@ -17,13 +17,17 @@ public class Main {
         Frame rf = new Frame();
         
         try {
+
             while (true) {
-                transaction = sessionMain.beginTransaction();
                 //Pays paysTest = new Pays();
                 //paysTest.setNom("canadatest");
                 //sessionMain.save(paysTest);
+                transaction = sessionMain.beginTransaction();
                 transaction.commit();
+
             }
+
+
         } catch (HibernateException e) {
             transaction.rollback();
             e.printStackTrace();

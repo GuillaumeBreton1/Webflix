@@ -1,5 +1,6 @@
 package gui.recherche.infoFilm;
 
+import backend.hibernate.tableMapping.Film;
 import gui.recherche.Listener.PersonneListener;
 import gui.recherche.Listener.PersonneListeListener;
 
@@ -8,6 +9,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.Vector;
 
 public class InfoFilmPanel extends JPanel {
 
@@ -106,21 +109,19 @@ public class InfoFilmPanel extends JPanel {
         this.realisateur = new JLabel();
         this.resume = new JLabel();
         this.affiche = new JLabel();
+        this.affiche.setPreferredSize(new Dimension (250, 100));
         this.bandesAnnonces = new JLabel();
-        
-        
-        // SCROLLERS 
-        this.scenaristes = new JList(LISTE_SCENARISTES);
-        this.acteurs = new JList(LISTE_ACTEURS);
+
+        this.scenaristes = new JList();
+        this.acteurs = new JList();
         this.scenaristes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         this.acteurs.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         this.scenaristes.setVisibleRowCount(-1);
         this.acteurs.setVisibleRowCount(-1);
-        this.acteursScroll = new JScrollPane(this.acteurs); 
-        this.scenaristesScroll = new JScrollPane(this.scenaristes); 
+        this.acteursScroll = new JScrollPane(this.acteurs);
+        this.scenaristesScroll = new JScrollPane(this.scenaristes);
         this.acteursScroll.setPreferredSize(new Dimension(250, 80));
         this.scenaristesScroll.setPreferredSize(new Dimension(250, 80));
-
         this.realisateur.setForeground(Color.BLUE);
         this.scenaristes.setForeground(Color.BLUE);
         this.acteurs.setForeground(Color.BLUE);
@@ -143,42 +144,53 @@ public class InfoFilmPanel extends JPanel {
         this.infoDuFilmPanel.add(this.bandesAnnonces);
     }
 
-    public void setInfoDuFilm(/*Film film*/) {
+    public void setInfoDuFilm(Film film) {
 
         //On set les attributs uniques
-        this.titre.setText("Test test");
-        this.annee.setText("2000");
-        this.langue.setText("fkhhhjj");
-        this.duree.setText("ueujj");
-        this.realisateur.setText("kslllllllllllllllllllllllllllllllllllllllllllllllllllhkjkh");
-        this.resume.setText("kndd");
-        this.affiche.setText("skhkhk");
+        this.titre.setText(film.getTitre());
+        this.annee.setText(film.getDateSortie().toString());
+        this.langue.setText(film.getLangueOriginale());
+        this.duree.setText(film.getDuree().toString());
+        this.realisateur.setText(film.getRealisateur().getNom());
+        this.resume.setText(film.getResumeScenario());
+        this.affiche.setText(film.getLienAffiche());
 
         //On set les attributs en liste non selectionnable 
-        this.setInfoListe(LISTE_PAYS, this.pays);
-        this.setInfoListe(LISTE_BANDE_ANNONCES, this.bandesAnnonces);
-        this.setInfoListe(LISTE_GENRES, this.genres);
-
-
-
+        this.setInfoListe(film.getPays(), this.pays);
+        //this.setInfoListe(film.get, this.bandesAnnonces);
+        this.setInfoListe(film.getGenres(), this.genres);
+        this.setUpJScroller(film);
     }
 
-    public void setInfoListe(String[] liste, JLabel label){
+    public void setUpJScroller(Film film){
+        this.scenaristes = new JList((Vector) film.getScenaristes());
+        this.acteurs = new JList((Vector) film.getRoles());
+        this.scenaristes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        this.acteurs.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        this.scenaristes.setVisibleRowCount(-1);
+        this.acteurs.setVisibleRowCount(-1);
+        this.acteursScroll = new JScrollPane(this.acteurs);
+        this.scenaristesScroll = new JScrollPane(this.scenaristes);
+        this.acteursScroll.setPreferredSize(new Dimension(250, 80));
+        this.scenaristesScroll.setPreferredSize(new Dimension(250, 80));
+    }
 
-        String listePays = new String(""); 
+    public void setInfoListe(Set liste, JLabel label){
+
+        String strListe = new String("");
         int i = 0; 
 
-        for(String p : liste){
+        for(Object p : liste){
             i++; 
-            if(i < liste.length){
-                listePays += p + ", "; 
+            if(i < liste.size()){
+                strListe += p.toString() + ", ";
             }else{
-                listePays += p; 
+                strListe += p.toString();
             }
 
         }
 
-        label.setText(listePays);
+        label.setText(strListe);
     }
 
     public void setUpPersonneMouseListener(PersonneListener personneListener,PersonneListeListener personneListeListener) {

@@ -13,13 +13,13 @@ public class ResultatsPanel extends JPanel {
     private DefaultListModel listModel;
     private JList<Film> listeResultats;
     private JScrollPane resultatsPane;
-    private String filmChoisi;
+    private Film filmChoisi;
 
     public ResultatsPanel() {
         this.listModel = new DefaultListModel();
         this.listeResultats = new JList(listModel);
         this.resultatsPane = new JScrollPane(listeResultats);
-        this.filmChoisi = new String();
+        this.filmChoisi = new Film();
         this.setLayout(new GridLayout(1, 1));
         this.setBorder(new EmptyBorder(10, 10, 10, 10));
         this.add(resultatsPane);
@@ -38,11 +38,11 @@ public class ResultatsPanel extends JPanel {
         return this.listeResultats;
     }
 
-    public String getFilmChoisi() {
+    public Film getFilmChoisi() {
         return this.filmChoisi;
     }
 
-    public void setFilmChoisi(String filmChoisi) {
+    public void setFilmChoisi(Film filmChoisi) {
         this.filmChoisi = filmChoisi;
     }
 

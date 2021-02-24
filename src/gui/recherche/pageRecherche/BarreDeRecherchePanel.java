@@ -144,8 +144,13 @@ public class BarreDeRecherchePanel extends JPanel {
             donnees.add(2, Integer.parseInt(annees[0]));
             donnees.add(3, Integer.parseInt(annees[1]));
         }else{
-            donnees.add(2, 1921);
-            donnees.add(3, 2021);
+            if(this.andRadioButton.isSelected()){
+                donnees.add(2, 1921);
+                donnees.add(3, 2021);
+            }else{
+                donnees.add(2, -1);
+                donnees.add(3, -1);
+            }
         }
 
         donnees.add(4, stringToArray(this.paysField.getText()));

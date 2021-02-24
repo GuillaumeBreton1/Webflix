@@ -1,5 +1,7 @@
 package gui.recherche.infoFilm;
 
+import backend.hibernate.tableMapping.Film;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -18,9 +20,9 @@ public class PageInfoFilmPanel extends JPanel {
         this.add(this.infoFilmPanel);
     }
 
-    public void setMovie(String movieTitle) {
-        this.titreInfoFilmPanel.setTitreFilm(movieTitle);
-        this.infoFilmPanel.setInfoDuFilm();
+    public void setMovie(Film film) {
+        this.titreInfoFilmPanel.setTitreFilm(film.getTitre());
+        this.infoFilmPanel.setInfoDuFilm(film);
     }
 
     public InfoFilmPanel getInfoFilmPanel() {
