@@ -1,5 +1,6 @@
 package gui.recherche.infoFilm;
 
+import backend.hibernate.tableMapping.Film;
 import gui.recherche.Listener.LouerListener;
 import gui.recherche.Listener.RetourListener;
 
@@ -18,6 +19,7 @@ public class TitreInfoFilmPanel extends JPanel {
     private JPanel retourPanel;
     private JPanel louerPanel;
     private JPanel titreFilmPanel;
+    private Film filmActuel;
 
     public TitreInfoFilmPanel() {
         this.setUpRetourPanel();
@@ -40,7 +42,7 @@ public class TitreInfoFilmPanel extends JPanel {
     public void setUpLouerPanel() {
         this.louerButton = new JButton(NOM_BOUTON_LOUER);
         this.louerPanel = new JPanel();
-        this.setUpLouerMouseListener(new LouerListener());
+        this.setUpLouerMouseListener();
         this.louerPanel.add(this.louerButton);
     }
 
@@ -53,16 +55,21 @@ public class TitreInfoFilmPanel extends JPanel {
         this.titreFilmPanel.add(this.titreFilm);
     }
 
-    public void setTitreFilm(String titreFilm) {
-        this.titreFilm.setText(titreFilm);
+    public void setTitreFilm(Film film) {
+        this.titreFilm.setText(film.getTitre());
+        this.filmActuel = film;
     }
 
     public void setUpRetourMouseListener(RetourListener retourListener) {
         this.retour.addMouseListener(retourListener);
     }
 
-    public void setUpLouerMouseListener(LouerListener louerListener) {
-        this.louerButton.addMouseListener(louerListener);
+    public void setUpLouerMouseListener() {
+        this.louerButton.addMouseListener(new LouerListener(this));
+    }
+
+    public Film getFilmActuel(){
+        return filmActuel;
     }
 
 }

@@ -1,5 +1,6 @@
 package gui.recherche.Listener;
 
+import backend.hibernate.tableMapping.PersonnalitePublique;
 import gui.recherche.infoPersonne.PageInfoPersonnePanel;
 
 import javax.swing.*;
@@ -21,8 +22,9 @@ public class PersonneListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String personneChoisie = ((JLabel) e.getSource()).getText().split(" \\(")[0];
-        this.pageInfoPersonnePanel.setPersonne(personneChoisie);
+        //PersonnalitePublique personneChoisie = (PersonnalitePublique) ((JLabel) e.getSource()).getSelectedValue();
+        //System.out.println(personneChoisie.getNom());
+        //this.pageInfoPersonnePanel.setPersonne(personneChoisie);
         this.card.next(cards);
     }
 }

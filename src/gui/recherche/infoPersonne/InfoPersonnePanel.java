@@ -1,5 +1,7 @@
 package gui.recherche.infoPersonne;
 
+import backend.hibernate.tableMapping.PersonnalitePublique;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -18,7 +20,8 @@ public class InfoPersonnePanel extends JPanel {
     private JLabel dateNaissance;
     private JLabel lieuNaissance;
     private JLabel photo;
-    private JLabel biographie;
+    private JTextArea biographie;
+    private JScrollPane bioScroll;
 
 
     public InfoPersonnePanel() {
@@ -55,8 +58,9 @@ public class InfoPersonnePanel extends JPanel {
         this.dateNaissance = new JLabel();
         this.lieuNaissance = new JLabel();
         this.photo = new JLabel();
-        this.biographie = new JLabel();
-
+        this.biographie = new JTextArea(5,500);
+        this.bioScroll = new JScrollPane(this.biographie);
+        //this.biographie.setPreferredSize(new Dimension(200,500));
         this.infoDeLaPersonnePanel = new JPanel();
         this.infoDeLaPersonnePanel.setBackground(Color.WHITE);
         this.infoDeLaPersonnePanel.setBorder(new EmptyBorder(0, 0, 0, 10));
@@ -65,15 +69,19 @@ public class InfoPersonnePanel extends JPanel {
         this.infoDeLaPersonnePanel.add(this.dateNaissance);
         this.infoDeLaPersonnePanel.add(this.lieuNaissance);
         this.infoDeLaPersonnePanel.add(this.photo);
-        this.infoDeLaPersonnePanel.add(this.biographie);
+        this.infoDeLaPersonnePanel.add(this.bioScroll);
     }
 
-    public void setInfoDeLaPersonne() {
-        this.nom.setText("test");
-        this.dateNaissance.setText("est");
-        this.lieuNaissance.setText("hfjjkh");
-        this.photo.setText("fkhhhjj");
-        this.biographie.setText("ueujj");
+    public void setInfoDeLaPersonne(PersonnalitePublique personne) {
+        this.nom.setText(personne.getNom());
+        this.dateNaissance.setText(personne.getDateNaissance().toString());
+        this.lieuNaissance.setText(personne.getProvenance());
+        this.photo.setText(personne.getLienPhoto());
+        try{
+            this.biographie.setText(personne.getBiographie().getSubString(1,(int)personne.getBiographie().length()));
+        }catch(Exception e){
+
+        }
     }
 
 }

@@ -27,7 +27,7 @@ public class CourtierFilmv2 {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            CourtierFilmv2 courtier = new CourtierFilmv2(session);
+            //CourtierFilmv2 courtier = new CourtierFilmv2(session);
 
             List<String> titres = new ArrayList<>();
 //            titres.add("Pirat");
@@ -74,7 +74,7 @@ public class CourtierFilmv2 {
             params.add(realisateurs);
             params.add(acteurs);
 
-            List<Film> liste = courtier.getListFilm(params);
+            //List<Film> liste = courtier.getListFilm(params);
 
             System.out.println("allo");
         }finally {
@@ -82,13 +82,7 @@ public class CourtierFilmv2 {
         }
     }
 
-    private Session session;
-
-    public CourtierFilmv2(Session session){
-        this.session = session;
-    }
-
-    public List<Film> getListFilm(List<Object> params){
+    public List<Film> getListFilm(List<Object> params, Session session){
         List<Film> films = new ArrayList<>();
 
         boolean isAnd = (boolean)params.get(0);
@@ -111,34 +105,34 @@ public class CourtierFilmv2 {
         List<Film> acteurFilm;
 
         if(isAnd){
-            listeComplete = getAllFilms();
-            titreFilm = titles.isEmpty() ? listeComplete : rechercheTitre(titles);
-            dateFilm = rechercheDateSortie(dateSortie1, dateSortie2);
-            paysFilm = pays.isEmpty() ? listeComplete : recherchePays(pays);
-            langueFilm = langue.isEmpty() ? listeComplete : rechercheLangue(langue);
-            genreFilm = genre.isEmpty() ? listeComplete : rechercheGenre(genre);
-            realisateurFilm = realisateur.isEmpty() ? listeComplete : rechercheRealisateur(realisateur);
-            acteurFilm = acteur.isEmpty() ? listeComplete : rechercheActeur(acteur);
+            listeComplete = getAllFilms(session);
+            titreFilm = titles.isEmpty() ? listeComplete : rechercheTitre(titles, session);
+            dateFilm = rechercheDateSortie(dateSortie1, dateSortie2, session);
+            paysFilm = pays.isEmpty() ? listeComplete : recherchePays(pays, session);
+            langueFilm = langue.isEmpty() ? listeComplete : rechercheLangue(langue, session);
+            genreFilm = genre.isEmpty() ? listeComplete : rechercheGenre(genre, session);
+            realisateurFilm = realisateur.isEmpty() ? listeComplete : rechercheRealisateur(realisateur,session);
+            acteurFilm = acteur.isEmpty() ? listeComplete : rechercheActeur(acteur, session);
         } else {
             List<Film> listeVide = new ArrayList<>();
-            titreFilm = titles.isEmpty() ? listeVide : rechercheTitre(titles);
-            dateFilm = dateSortie1.equals(-1) ? listeVide : rechercheDateSortie(dateSortie1, dateSortie2);
-            paysFilm = pays.isEmpty() ? listeVide : recherchePays(pays);
-            langueFilm = langue.isEmpty() ? listeVide : rechercheLangue(langue);
-            genreFilm = genre.isEmpty() ? listeVide : rechercheGenre(genre);
-            realisateurFilm = realisateur.isEmpty() ? listeVide : rechercheRealisateur(realisateur);
-            acteurFilm = acteur.isEmpty() ? listeVide : rechercheActeur(acteur);
+            titreFilm = titles.isEmpty() ? listeVide : rechercheTitre(titles,session);
+            dateFilm = dateSortie1.equals(-1) ? listeVide : rechercheDateSortie(dateSortie1, dateSortie2,session);
+            paysFilm = pays.isEmpty() ? listeVide : recherchePays(pays,session);
+            langueFilm = langue.isEmpty() ? listeVide : rechercheLangue(langue,session);
+            genreFilm = genre.isEmpty() ? listeVide : rechercheGenre(genre,session);
+            realisateurFilm = realisateur.isEmpty() ? listeVide : rechercheRealisateur(realisateur,session);
+            acteurFilm = acteur.isEmpty() ? listeVide : rechercheActeur(acteur,session);
         }
         films = filterLists(isAnd, titreFilm, dateFilm, paysFilm, langueFilm, genreFilm, realisateurFilm, acteurFilm);
 
         return films;
     }
 
-    private List<Film> rechercheTitre(List<String> titres){
+    private List<Film> rechercheTitre(List<String> titres, Session session){
         Map<Integer, Film> filmsMap = new HashMap<>();
         for(String titre : titres){
             titre = "%" + titre + "%";
-            Criteria criteria = getCriteria();
+            Criteria criteria = getCriteria(session);
             criteria.add(Restrictions.like("titre", titre));
 
             List<Film> liste = (List<Film>) criteria.list();
@@ -149,13 +143,13 @@ public class CourtierFilmv2 {
         return new ArrayList<>(filmsMap.values());
     }
 
-    private List<Film> rechercheDateSortie(Integer date1, Integer date2){
-        Criteria criteria = getCriteria();
+    private List<Film> rechercheDateSortie(Integer date1, Integer date2, Session session){
+        Criteria criteria = getCriteria(session);
         criteria.add(Restrictions.between("dateSortie", date1, date2));
         return (List<Film>) criteria.list();
     }
 
-    private List<Film> recherchePays(List<String> pays){
+    private List<Film> recherchePays(List<String> pays, Session session){
         Map<Integer, Film> filmsMap = new HashMap<>();
 
         for(String nomPays : pays){
@@ -170,13 +164,13 @@ public class CourtierFilmv2 {
         return new ArrayList<>(filmsMap.values());
     }
 
-    private List<Film> rechercheLangue(List<String> langues){
+    private List<Film> rechercheLangue(List<String> langues, Session session){
         Map<Integer, Film> films = new HashMap<>();
 
         for(String langue : langues){
             langue = "%" + langue + "%";
 
-            Criteria criteria = getCriteria();
+            Criteria criteria = getCriteria(session);
             criteria.add(Restrictions.like("langueOriginale", langue));
 
             List<Film> liste = (List<Film>) criteria.list();
@@ -187,7 +181,7 @@ public class CourtierFilmv2 {
         return new ArrayList<>(films.values());
     }
 
-    private List<Film> rechercheGenre(List<String> genres){
+    private List<Film> rechercheGenre(List<String> genres, Session session){
         Map<Integer, Film> filmsMap = new HashMap<>();
 
         for(String nomGenre : genres){
@@ -202,7 +196,7 @@ public class CourtierFilmv2 {
         return new ArrayList<>(filmsMap.values());
     }
 
-    private List<Film> rechercheRealisateur(List<String> realisateurs){
+    private List<Film> rechercheRealisateur(List<String> realisateurs, Session session){
         Map<Integer, Film> films = new HashMap<>();
         for(String realisateur : realisateurs){
             realisateur = "%" + realisateur + "%";
@@ -220,7 +214,7 @@ public class CourtierFilmv2 {
         return new ArrayList<>(films.values());
     }
 
-    private List<Film> rechercheActeur(List<String> acteurs){
+    private List<Film> rechercheActeur(List<String> acteurs, Session session){
         Map<Integer, Film> films = new HashMap<>();
         //session.beginTransaction();
         for(String acteur : acteurs){
@@ -239,13 +233,13 @@ public class CourtierFilmv2 {
         return new ArrayList<Film>(films.values());
     }
 
-    private List<Film> getAllFilms(){
-        Criteria criteria = getCriteria();
+    private List<Film> getAllFilms(Session session){
+        Criteria criteria = getCriteria(session);
         List<Film> list = (List<Film>) criteria.list();
         return list;
     }
 
-    private Criteria getCriteria(){
+    private Criteria getCriteria(Session session){
         Criteria criteria = session.createCriteria(Film.class);
         criteria.setProjection(Projections.projectionList()
                 .add(Projections.property("id"), "id")

@@ -21,7 +21,7 @@ public class PageInfoFilmPanel extends JPanel {
     }
 
     public void setMovie(Film film) {
-        this.titreInfoFilmPanel.setTitreFilm(film.getTitre());
+        this.titreInfoFilmPanel.setTitreFilm(film);
         this.infoFilmPanel.setInfoDuFilm(film);
     }
 

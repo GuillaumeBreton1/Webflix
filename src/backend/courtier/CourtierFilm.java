@@ -204,7 +204,7 @@ public class CourtierFilm {
             acteur = "%" + acteur + "%";
             Query query = session.createQuery(
                     "FROM Role r " +
-                            "WHERE UPPER(r.acteur.nom) LIKE (:nom)");
+                            "WHERE UPPER(r.acteur.nom) LIKE UPPER (:nom)");
             query.setParameter("nom", acteur);
             List<Role> listRole = (List<Role>) query.list();
             for(Role role : listRole){

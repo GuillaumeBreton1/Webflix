@@ -46,6 +46,7 @@ public class InfoFilmPanel extends JPanel {
     private JLabel langue;
     private JLabel duree;
     private JLabel realisateur;
+    private JLabel scenaristes;
     private JLabel resume;
     private JLabel affiche;
     private JLabel pays;
@@ -53,9 +54,7 @@ public class InfoFilmPanel extends JPanel {
     private JLabel bandesAnnonces;
 
     //JList
-    private JList scenaristes;
     private JList roles;
-    private DefaultListModel<Scenariste> listScenariste = new DefaultListModel<>();
     private DefaultListModel<Role> listRole = new DefaultListModel<>();
 
     public InfoFilmPanel() {
@@ -111,22 +110,16 @@ public class InfoFilmPanel extends JPanel {
         this.realisateur = new JLabel();
         this.resume = new JLabel();
         this.affiche = new JLabel();
-        this.affiche.setPreferredSize(new Dimension (250, 100));
         this.bandesAnnonces = new JLabel();
+        this.scenaristes = new JLabel();
 
-        this.scenaristes = new JList(listScenariste);
-        this.roles = new JList(listRole);
-        this.scenaristes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        this.roles = new JList(this.listRole);
         this.roles.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        this.scenaristes.setVisibleRowCount(-1);
         this.roles.setVisibleRowCount(-1);
         this.acteursScroll = new JScrollPane(this.roles);
-        this.scenaristesScroll = new JScrollPane(this.scenaristes);
         this.acteursScroll.setPreferredSize(new Dimension(250, 80));
-        this.scenaristesScroll.setPreferredSize(new Dimension(250, 80));
 
         this.realisateur.setForeground(Color.BLUE);
-        this.scenaristes.setForeground(Color.BLUE);
         this.roles.setForeground(Color.BLUE);
 
 
@@ -142,7 +135,7 @@ public class InfoFilmPanel extends JPanel {
         this.infoDuFilmPanel.add(this.duree);
         this.infoDuFilmPanel.add(this.genres);
         this.infoDuFilmPanel.add(this.realisateur);
-        this.infoDuFilmPanel.add(this.scenaristesScroll);
+        this.infoDuFilmPanel.add(this.scenaristes);
         this.infoDuFilmPanel.add(this.acteursScroll);
         this.infoDuFilmPanel.add(this.resume);
         this.infoDuFilmPanel.add(this.affiche);
@@ -152,9 +145,7 @@ public class InfoFilmPanel extends JPanel {
 
     public void setInfoDuFilm(Film film) {
         listRole.clear();
-        listScenariste.clear();
         listRole.addAll(film.getRoles());
-        listScenariste.addAll(film.getScenaristes());
 
         //On set les attributs uniques
         this.titre.setText(film.getTitre());
@@ -162,6 +153,7 @@ public class InfoFilmPanel extends JPanel {
         this.langue.setText(film.getLangueOriginale());
         this.duree.setText(film.getDuree().toString());
         this.realisateur.setText(film.getRealisateur().getNom());
+        this.scenaristes.setText(film.getScenaristes().toString());
         this.resume.setText(film.getResumeScenario());
         this.affiche.setText(film.getLienAffiche());
 
@@ -169,6 +161,8 @@ public class InfoFilmPanel extends JPanel {
         this.setInfoListe(film.getPays(), this.pays);
         //this.setInfoListe(film.get, this.bandesAnnonces);
         this.setInfoListe(film.getGenres(), this.genres);
+        this.setInfoListe(film.getScenaristes(), this.scenaristes);
+
     }
 
 
@@ -192,7 +186,6 @@ public class InfoFilmPanel extends JPanel {
 
     public void setUpPersonneMouseListener(PersonneListener personneListener,PersonneListeListener personneListeListener) {
         this.realisateur.addMouseListener(personneListener);
-        this.scenaristes.addMouseListener(personneListeListener);
         this.roles.addMouseListener(personneListeListener);
     }
 

@@ -1,5 +1,7 @@
 package gui.recherche.Listener;
 
+import backend.hibernate.tableMapping.PersonnalitePublique;
+import backend.hibernate.tableMapping.Role;
 import gui.recherche.infoPersonne.PageInfoPersonnePanel;
 
 import javax.swing.*;
@@ -21,7 +23,7 @@ public class PersonneListeListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String personneChoisie = (String) ((JList) e.getSource()).getSelectedValue(); 
+        PersonnalitePublique personneChoisie = ((Role) ((JList) e.getSource()).getSelectedValue()).getActeur();
         this.pageInfoPersonnePanel.setPersonne(personneChoisie);
         this.card.next(cards);
     }

@@ -1,6 +1,7 @@
 package façade;
 
 import backend.courtier.CourtierFilm;
+import backend.courtier.CourtierFilmv2;
 import backend.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,6 +19,8 @@ public class Facade {
     private String courriel;
     private char[] motDePasse;
     private static CourtierFilm courtierFilm = new CourtierFilm();
+    private static CourtierFilmv2 courtierFilmv2 = new CourtierFilmv2();
+
     //Session sessionMain = HibernateUtil.getSessionFactory().openSession();
 
     public static boolean login(String courriel, char[] motDePasse){
@@ -52,7 +55,7 @@ public class Facade {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try{
-            films = (ArrayList<Film>) courtierFilm.getListFilms(params, session);
+            films = (ArrayList<Film>) courtierFilmv2.getListFilm(params, session);
         }catch(Exception e){
 
         }finally {

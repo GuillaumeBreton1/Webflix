@@ -1,5 +1,7 @@
 package gui.recherche.infoPersonne;
 
+import backend.hibernate.tableMapping.PersonnalitePublique;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -18,9 +20,9 @@ public class PageInfoPersonnePanel extends JPanel {
         this.add(this.infoPersonnePanel);
     }
 
-    public void setPersonne(String nom) {
-        this.titreInfoPersonnePanel.setNomPersonne(nom);
-        this.infoPersonnePanel.setInfoDeLaPersonne();
+    public void setPersonne(PersonnalitePublique  personne) {
+        this.titreInfoPersonnePanel.setNomPersonne(personne.getNom());
+        this.infoPersonnePanel.setInfoDeLaPersonne(personne);
     }
 
     public TitreInfoPersonnePanel getTitreInfoPersonnePanel() {
