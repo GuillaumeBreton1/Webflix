@@ -31,4 +31,9 @@ public class Pays {
     public void setFilms(Set<Film> films) {
         this.films = films;
     }
+
+    @Override
+    public String toString(){
+        return nom;
+    }
 }

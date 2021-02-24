@@ -15,16 +15,16 @@
         <property name="lienAffiche" column="LIENAFFICHE" type="string" not-null="false"/>
         <property name="resumeScenario" column="RESUMESCENARIO" type="string" length="4000" not-null="false"/>
         <many-to-one name="realisateur" class="backend.hibernate.tableMapping.PersonnalitePublique"
-                     column="idRealisateur" not-null="true"/>
-        <set name="genres" table="FILMGENRE" cascade="save-update">
+                     column="idRealisateur" not-null="true" lazy="false"/>
+        <set name="genres" table="FILMGENRE" cascade="save-update" lazy="false" >
             <key column="IDFILM"/>
             <many-to-many column="IDGENRE" class="backend.hibernate.tableMapping.Genre"/>
         </set>
-        <set name="pays" table="FILMPAYS" cascade="save-update">
+        <set name="pays" table="FILMPAYS" cascade="save-update" lazy="false">
             <key column="IDFILM"/>
             <many-to-many column="IDPAYS" class="backend.hibernate.tableMapping.Pays"/>
         </set>
-        <set name="scenaristes" table="FILMSCENARISTE" cascade="save-update">
+        <set name="scenaristes" table="FILMSCENARISTE" cascade="save-update" lazy="false">
             <key column="IDFILM"/>
             <many-to-many column="IDSCENARISTE" class="backend.hibernate.tableMapping.Scenariste"/>
         </set>
@@ -32,7 +32,7 @@
             <key column="IDFILM"/>
             <one-to-many class="backend.hibernate.tableMapping.Role"/>
         </set>
-        <set name="bandeAnnonces" table="BANDEANNONCE" cascade="save-update" inverse="true">
+        <set name="bandeAnnonces" table="BANDEANNONCE" cascade="save-update" inverse="true" lazy="false">
             <key column="IDFILM"/>
             <one-to-many class="backend.hibernate.tableMapping.BandeAnnonce"/>
         </set>
