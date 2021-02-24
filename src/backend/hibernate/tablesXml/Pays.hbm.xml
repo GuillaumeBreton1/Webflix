@@ -11,7 +11,7 @@
         <property name="nom" type="string">
             <column length="15" not-null="true" unique="true" name="NOM"/>
         </property>
-        <set name="films" table="FILMPAYS" cascade="save-update">
+        <set name="films" table="FILMPAYS" cascade="save-update" lazy="true">
             <key column="IDPAYS"/>
             <many-to-many column="IDFILM" class="backend.hibernate.tableMapping.Film"/>
         </set>
