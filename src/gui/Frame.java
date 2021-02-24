@@ -79,9 +79,6 @@ public class Frame extends JFrame {
                     char[] motDePasse;
                     utilisateur = userField.getText();
                     motDePasse = passwordField.getPassword();
-
-                    card.next(cards);
-
                     
                     boolean loginFonctionnel = Facade.login(utilisateur, motDePasse);
                     if (!loginFonctionnel) {
@@ -130,11 +127,11 @@ public class Frame extends JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                String filmChoisi = resultatsPanel.getListeResultats().getSelectedValue();
+                /*String filmChoisi = resultatsPanel.getListeResultats().getSelectedValue();
                 resultatsPanel.setFilmChoisi(filmChoisi);
                 pageInfoFilmPanel.setMovie(filmChoisi);
                 pageDeRecherchePanel.clearTextField();
-                card.next(cards);
+                card.next(cards);*/
             }
         });
     }

@@ -35,7 +35,7 @@ public class CourtierFilm {
     public List<Film> getListFilms(List<Object> params){
         List<Film> films = new ArrayList<>();
 
-        boolean condition = (Boolean) params.get(0);
+        boolean condition = (boolean)params.get(0);
         List<String> titles = (List<String>) params.get(1);
         Integer dateSortie1 = (Integer) params.get(2);
         Integer dateSortie2 = (Integer) params.get(3);
@@ -59,7 +59,7 @@ public class CourtierFilm {
                     languageSearch, genreSearch, realisateurSearch, acteurSearch);
 
         } catch (HibernateException e) {
-            transaction.rollback();
+            //transaction.rollback();
             e.printStackTrace();
         }
 

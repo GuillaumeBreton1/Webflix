@@ -1,5 +1,6 @@
 package façade;
 
+import backend.courtier.CourtierFilm;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -14,6 +15,7 @@ public class Facade {
     private static Integer userLoggedId;
     private String courriel;
     private char[] motDePasse;
+    private static CourtierFilm courtierFilm;
 
     public static boolean login(String courriel, char[] motDePasse){
         boolean loginFonctionnel = true;
@@ -37,13 +39,14 @@ public class Facade {
 
     // Retourne la liste de films demandés lors de la recherche, prend en paramètre la liste de recherche 
     public static ArrayList<Film> getFilms(List<Object> params){
-        ArrayList<Film> films = new ArrayList<Film>(); 
-
-        Film f = new Film(); 
-        f.setTitre("Titanic"); 
+        ArrayList<Film> films = new ArrayList<Film>();
+        Film f = new Film();
+        /*
         f.setDateSortie(1997);
-        films.add(f); 
-
+        f.setTitre("Titanic");
+        films.add(f);*/
+        courtierFilm =  new CourtierFilm(currentSession);
+        films = (ArrayList<Film>) courtierFilm.getListFilms(params);
         return films; 
     }
 

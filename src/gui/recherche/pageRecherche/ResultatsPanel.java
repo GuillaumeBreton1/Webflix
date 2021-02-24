@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ResultatsPanel extends JPanel {
 
     private DefaultListModel listModel;
-    private JList<String> listeResultats;
+    private JList<Film> listeResultats;
     private JScrollPane resultatsPane;
     private String filmChoisi;
 
@@ -29,12 +29,12 @@ public class ResultatsPanel extends JPanel {
 
         listModel.clear();
         for(Film film : films) {
-            String filmStr = film.getTitre() + " (" + film.getDateSortie() + " )";
-            listModel.addElement(filmStr);
+            //String filmStr = film.getTitre() + " (" + film.getDateSortie() + " )";
+            listModel.addElement(film);
         }
     }
 
-    public JList<String> getListeResultats() {
+    public JList<Film> getListeResultats() {
         return this.listeResultats;
     }
 

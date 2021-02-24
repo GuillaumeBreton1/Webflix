@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BarreDeRecherchePanel extends JPanel {
@@ -130,31 +131,43 @@ public class BarreDeRecherchePanel extends JPanel {
         List<Object> donnees = new ArrayList<Object>(); 
 
         if(this.andRadioButton.isSelected()){
-            donnees.add(0, "AND");
+            donnees.add(0, true);
         }else{
-            donnees.add(0, "OR");
+            donnees.add(0, false);
         }
 
-        donnees.add(1, this.titreFilmField.getText().split(","));
+        donnees.add(1, stringToArray(this.titreFilmField.getText()));
         String[] annees = new String[2]; 
         annees = this.gapAnneeField.getText().split(";"); 
         System.out.println("length=" + annees.length); 
         if(annees.length > 1){
-            donnees.add(2, annees[0]);
-            donnees.add(3, annees[1]);
+            donnees.add(2, Integer.parseInt(annees[0]));
+            donnees.add(3, Integer.parseInt(annees[1]));
         }else{
             donnees.add(2, 1921);
             donnees.add(3, 2021);
         }
 
-        donnees.add(4, this.paysField.getText().split(","));
-        donnees.add(5, this.langueField.getText().split(","));
-        donnees.add(6, this.genreField.getText().split(","));
-        donnees.add(7, this.realisateurField.getText().split(","));
-        donnees.add(8, this.acteurField.getText().split(","));
+        donnees.add(4, stringToArray(this.paysField.getText()));
+        donnees.add(5, stringToArray(this.langueField.getText()));
+        donnees.add(6, stringToArray(this.genreField.getText()));
+        donnees.add(7, stringToArray(this.realisateurField.getText()));
+        donnees.add(8, stringToArray(this.acteurField.getText()));
 
-        return donnees; 
+        return donnees;
+    }
 
+    public List<String> stringToArray(String string){
+        String[] str = string.split(",");
+        List<String> liste = new ArrayList<String>();
+        System.out.println("String : " + str[0]);
+
+        if(str[0].isBlank()){
+            liste.clear();
+            return liste;
+        }
+
+        return Arrays.asList(str);
     }
 
 }
