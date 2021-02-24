@@ -15,6 +15,7 @@ public class Film {
     private Set<Genre> genres;
     private Set<Pays> pays;
     private Set<Scenariste> scenaristes;
+    private Set<Role> roles;
 
     public Integer getId() {
         return id;
@@ -102,5 +103,13 @@ public class Film {
 
     public void setScenaristes(Set<Scenariste> scenaristes) {
         this.scenaristes = scenaristes;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

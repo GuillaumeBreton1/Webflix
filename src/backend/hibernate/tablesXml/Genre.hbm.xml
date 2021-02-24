@@ -9,5 +9,9 @@
    <generator class="increment"/>
   </id>
   <property name="nom" column="NOM" type="string" not-null="true"/>
+  <set name="films" table="FILMGENRE" cascade="save-update">
+   <key column="IDGENRE"/>
+   <many-to-many column="IDFILM" class="backend.hibernate.tableMapping.Film"/>
+  </set>
  </class>
 </hibernate-mapping>

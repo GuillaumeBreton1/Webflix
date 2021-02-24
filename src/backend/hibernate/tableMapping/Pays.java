@@ -1,9 +1,12 @@
 package backend.hibernate.tableMapping;
 
+import java.util.Set;
+
 public class Pays {
 
     private Integer id;
     private String nom;
+    private Set<Film> films;
 
     public Integer getId() {
         return id;
@@ -21,5 +24,11 @@ public class Pays {
         this.nom = nom;
     }
 
+    public Set<Film> getFilms() {
+        return films;
+    }
 
+    public void setFilms(Set<Film> films) {
+        this.films = films;
+    }
 }
