@@ -15,6 +15,7 @@ public class Main {
         facade.setCurrentSession(sessionMain);
 
         Frame rf = new Frame();
+        
         try {
             while (true) {
                 transaction = sessionMain.beginTransaction();

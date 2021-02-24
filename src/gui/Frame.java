@@ -80,6 +80,9 @@ public class Frame extends JFrame {
                     utilisateur = userField.getText();
                     motDePasse = passwordField.getPassword();
 
+                    card.next(cards);
+
+                    
                     boolean loginFonctionnel = Facade.login(utilisateur, motDePasse);
                     if (!loginFonctionnel) {
                         JOptionPane.showMessageDialog(loginPanel, "Erreur pour la connexion ",

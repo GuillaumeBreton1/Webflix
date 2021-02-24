@@ -3,6 +3,9 @@ package façade;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import backend.hibernate.tableMapping.Film;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Facade {
@@ -30,6 +33,18 @@ public class Facade {
             loginFonctionnel= false;
         }
         return loginFonctionnel;
+    }
+
+    // Retourne la liste de films demandés lors de la recherche, prend en paramètre la liste de recherche 
+    public static ArrayList<Film> getFilms(List<Object> params){
+        ArrayList<Film> films = new ArrayList<Film>(); 
+
+        Film f = new Film(); 
+        f.setTitre("Titanic"); 
+        f.setDateSortie(1997);
+        films.add(f); 
+
+        return films; 
     }
 
     public String getCourriel() {

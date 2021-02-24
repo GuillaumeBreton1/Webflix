@@ -2,6 +2,9 @@ package gui.recherche.pageRecherche;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import backend.hibernate.tableMapping.Film;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -22,11 +25,12 @@ public class ResultatsPanel extends JPanel {
         this.add(resultatsPane);
     }
 
-    public void montrerResultats(ArrayList<String> resultats) {
+    public void displayFilms(ArrayList<Film> films) {
 
         listModel.clear();
-        for(String resultat : resultats) {
-            listModel.addElement(resultat);
+        for(Film film : films) {
+            String filmStr = film.getTitre() + " (" + film.getDateSortie() + " )";
+            listModel.addElement(filmStr);
         }
     }
 
