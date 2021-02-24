@@ -47,13 +47,13 @@ public class CourtierFilm {
 
         Transaction transaction = null;
         try {
-            List<Film> titleSearch = listFromTitles(titles);
+            List<Film> titleSearch = titles.isEmpty()?getAllFilms():listFromTitles(titles);
             List<Film> dateSearch = listFromReleaseYear(dateSortie1, dateSortie2);
-            List<Film> countrySearch = listFromCountries(pays);
-            List<Film> languageSearch = listFromLanguages(langue);
-            List<Film> genreSearch = listFromGenres(genre);
-            List<Film> realisateurSearch = listFromRealisateur(realisateur);
-            List<Film> acteurSearch = listFromActeurs(acteur);
+            List<Film> countrySearch = pays.isEmpty()?getAllFilms():listFromCountries(pays);
+            List<Film> languageSearch = langue.isEmpty()?getAllFilms():listFromLanguages(langue);
+            List<Film> genreSearch = genre.isEmpty()?getAllFilms():listFromGenres(genre);
+            List<Film> realisateurSearch = realisateur.isEmpty()?getAllFilms():listFromRealisateur(realisateur);
+            List<Film> acteurSearch = acteur.isEmpty()?getAllFilms():listFromActeurs(acteur);
 
             films = filterList(condition, titleSearch, dateSearch, countrySearch,
                     languageSearch, genreSearch, realisateurSearch, acteurSearch);
@@ -254,6 +254,11 @@ public class CourtierFilm {
                 .add(Projections.property("dateSortie"), "dateSortie"))
                 .setResultTransformer(Transformers.aliasToBean(Film.class));
         return criteria;
+    }
+
+    private List<Film> getAllFilms(){
+        Criteria criteria = getCriteria();
+        return (List<Film>) criteria.list();
     }
 
 }
