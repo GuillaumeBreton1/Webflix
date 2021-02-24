@@ -16,6 +16,7 @@ public class Film {
     private Set<Pays> pays;
     private Set<Scenariste> scenaristes;
     private Set<Role> roles;
+    private Set<BandeAnnonce> bandeAnnonces;
 
     public Integer getId() {
         return id;
@@ -111,6 +112,14 @@ public class Film {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<BandeAnnonce> getBandeAnnonces() {
+        return bandeAnnonces;
+    }
+
+    public void setBandeAnnonces(Set<BandeAnnonce> bandeAnnonces) {
+        this.bandeAnnonces = bandeAnnonces;
     }
 
     @Override

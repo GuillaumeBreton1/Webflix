@@ -32,5 +32,9 @@
             <key column="IDFILM"/>
             <one-to-many class="backend.hibernate.tableMapping.Role"/>
         </set>
+        <set name="bandeAnnonces" table="BANDEANNONCE" cascade="save-update" inverse="true">
+            <key column="IDFILM"/>
+            <one-to-many class="backend.hibernate.tableMapping.BandeAnnonce"/>
+        </set>
     </class>
 </hibernate-mapping>

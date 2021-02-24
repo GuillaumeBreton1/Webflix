@@ -47,6 +47,9 @@ public class CourtierFilm {
 
         Transaction transaction = null;
         try {
+
+            transaction = session.beginTransaction();
+
             List<Film> titleSearch;
             List<Film> dateSearch;
             List<Film> countrySearch;
@@ -65,7 +68,7 @@ public class CourtierFilm {
             }
             else{
                 titleSearch = titles.isEmpty() ? new ArrayList<Film>() : listFromTitles(titles);
-                dateSearch = listFromReleaseYear(dateSortie1, dateSortie2);
+                dateSearch = dateSortie1.equals(-1) ? new ArrayList<Film>() : listFromReleaseYear(dateSortie1, dateSortie2);
                 countrySearch = pays.isEmpty() ? new ArrayList<Film>() : listFromCountries(pays);
                 languageSearch = langue.isEmpty() ? new ArrayList<Film>() : listFromLanguages(langue);
                 genreSearch = genre.isEmpty() ? new ArrayList<Film>() : listFromGenres(genre);
@@ -76,27 +79,30 @@ public class CourtierFilm {
                     languageSearch, genreSearch, realisateurSearch, acteurSearch);
 
         } catch (HibernateException e) {
-            //transaction.rollback();
+            transaction.rollback();
             e.printStackTrace();
+        } finally {
+            transaction.commit();
         }
 
         return films;
     }
 
     public Film getFilmDetails(Integer idFilm){
-        Transaction transaction = null;
 
-        transaction = session.beginTransaction();
+        session.beginTransaction();
         Query query = session.createQuery(
                 "FROM FILM f " +
                         "WHERE f.id = :id");
         query.setInteger("id", idFilm);
-        return (Film) query.list().get(0);
+        Film film = (Film) query.list().get(0);
+        session.getTransaction().commit();
+        return film;
     }
 
     private List<Film> listFromTitles(List<String> titles){
         Map<Integer, Film> films = new HashMap<>();
-
+        session.beginTransaction();
         for(String title : titles){
             title = "%" + title + "%";
 
@@ -108,20 +114,23 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
+        session.getTransaction().commit();
         return new ArrayList<>(films.values());
     }
 
     private List<Film> listFromReleaseYear(Integer date1, Integer date2){
-
+        session.beginTransaction();
         Criteria criteria = getCriteria();
         criteria.add(Restrictions.between("dateSortie", date1, date2));
 
-        return (List<Film>) criteria.list();
+        List<Film> list = (List<Film>) criteria.list();
+        session.getTransaction().commit();
+        return list;
     }
 
     private List<Film> listFromCountries(List<String> countries){
         Map<Integer, Film> films = new HashMap<>();
-
+        session.beginTransaction();
         for(String country : countries){
             country = "%" + country + "%";
             Query query = session.createQuery(
@@ -133,11 +142,13 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
+        session.getTransaction().commit();
         return new ArrayList<Film>(films.values());
     }
 
     private List<Film> listFromGenres(List<String> genres){
         Map<Integer, Film> films = new HashMap<>();
+        session.beginTransaction();
 
         for(String genre : genres){
             genre = "%" + genre + "%";
@@ -150,12 +161,14 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
+        session.getTransaction().commit();
         return new ArrayList<Film>(films.values());
     }
 
     private List<Film> listFromLanguages(List<String> languages){
         Map<Integer, Film> films = new HashMap<>();
 
+        session.beginTransaction();
         for(String language : languages){
             language = "%" + language + "%";
 
@@ -167,12 +180,13 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
+        session.getTransaction().commit();
         return new ArrayList<>(films.values());
     }
 
     private List<Film> listFromRealisateur(List<String> realisateurs){
         Map<Integer, Film> films = new HashMap<>();
-
+        session.beginTransaction();
         for(String realisateur : realisateurs){
             realisateur = "%" + realisateur + "%";
 
@@ -186,12 +200,13 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
+        session.getTransaction().commit();
         return new ArrayList<>(films.values());
     }
 
     private List<Film> listFromActeurs(List<String> acteurs){
         Map<Integer, Film> films = new HashMap<>();
-
+        session.beginTransaction();
         for(String acteur : acteurs){
             acteur = "%" + acteur + "%";
             Query query = session.createQuery(
@@ -204,6 +219,7 @@ public class CourtierFilm {
                 films.put(film.getId(), film);
             }
         }
+        session.getTransaction().commit();
         return new ArrayList<Film>(films.values());
     }
 
@@ -274,8 +290,11 @@ public class CourtierFilm {
     }
 
     private List<Film> getAllFilms(){
+        session.beginTransaction();
         Criteria criteria = getCriteria();
-        return (List<Film>) criteria.list();
+        List<Film> list = (List<Film>) criteria.list();
+        session.getTransaction().commit();
+        return list;
     }
 
 }
