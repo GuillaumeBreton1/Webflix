@@ -122,6 +122,28 @@ public class Film {
         this.bandeAnnonces = bandeAnnonces;
     }
 
+    public Scenariste[] getScenaristeArray(){
+        Scenariste[] str = new Scenariste[this.getScenaristes().size()];
+
+        int i = 0;
+        for(Scenariste s : this.getScenaristes()){
+            str[i++] = s;
+        }
+
+        return str;
+    }
+
+    public Role[] getRolesArray(){
+        Role[] str = new Role[this.getRoles().size()];
+
+        int i = 0;
+        for(Role s : this.getRoles()){
+            str[i++] = s;
+        }
+
+        return str;
+    }
+
     @Override
     public String toString(){
         return titre + " (" + dateSortie + ")";

@@ -9,21 +9,25 @@ import org.hibernate.Transaction;
 
 public class Main {
     public static void main(String[] args) {
-        Session sessionMain = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        //Session sessionMain = HibernateUtil.getSessionFactory().openSession();
+        //Transaction transaction = null;
+        /*
         Facade facade = new Facade();
         facade.setCurrentSession(sessionMain);
-
+        */
         Frame rf = new Frame();
-        
+
+        /*
         try {
+
+            transaction = sessionMain.beginTransaction();
 
             while (true) {
                 //Pays paysTest = new Pays();
                 //paysTest.setNom("canadatest");
                 //sessionMain.save(paysTest);
                 transaction = sessionMain.beginTransaction();
-                transaction.commit();
+                //transaction.commit();
 
             }
 
@@ -33,7 +37,7 @@ public class Main {
             e.printStackTrace();
         } finally {
             sessionMain.close();
-        }
+        }*/
     }
 
 }

@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
-	private static final SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory;
 	static {
 		try {
 			sessionFactory = new Configuration().configure("backend/hibernate/hibernate.cfg.xml")
@@ -18,6 +18,10 @@ public class HibernateUtil {
 	}
 
 	public static SessionFactory getSessionFactory() {
+		if(sessionFactory == null || sessionFactory.isClosed()){
+			sessionFactory = new Configuration().configure("backend/hibernate/hibernate.cfg.xml")
+					.buildSessionFactory();
+		}
 		return sessionFactory;
 	}
 }

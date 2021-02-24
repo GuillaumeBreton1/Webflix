@@ -41,7 +41,7 @@ public class Role {
 
     @Override
     public String toString(){
-        return acteur + " : " + nom;
+        return acteur.getNom() + " : " + nom;
     }
 
 }

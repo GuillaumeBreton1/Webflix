@@ -55,6 +55,8 @@ public class Frame extends JFrame {
         this.setUpLogoutActionListener(this.card, this.cards);
         this.setUpLocationActionListener(this.card, this.cards);
 
+        this.setResizable(true);
+
         this.cards.add(this.loginPanel, "login");
         this.cards.add(this.pageDeRecherchePanel, "recherche");
         this.cards.add(this.pageInfoFilmPanel, "infofilm");
