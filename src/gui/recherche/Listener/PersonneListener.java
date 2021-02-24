@@ -22,9 +22,8 @@ public class PersonneListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //PersonnalitePublique personneChoisie = (PersonnalitePublique) ((JLabel) e.getSource()).getSelectedValue();
-        //System.out.println(personneChoisie.getNom());
-        //this.pageInfoPersonnePanel.setPersonne(personneChoisie);
+        PersonnalitePublique personneChoisie = (PersonnalitePublique) ((JLabel) e.getSource()).getClientProperty("personne");
+        this.pageInfoPersonnePanel.setPersonne(personneChoisie);
         this.card.next(cards);
     }
 }

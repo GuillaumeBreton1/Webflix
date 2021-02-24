@@ -152,6 +152,7 @@ public class InfoFilmPanel extends JPanel {
         this.annee.setText(film.getDateSortie().toString());
         this.langue.setText(film.getLangueOriginale());
         this.duree.setText(film.getDuree().toString());
+        this.realisateur.putClientProperty("personne", film.getRealisateur());
         this.realisateur.setText(film.getRealisateur().getNom());
         this.scenaristes.setText(film.getScenaristes().toString());
         this.resume.setText(film.getResumeScenario());
