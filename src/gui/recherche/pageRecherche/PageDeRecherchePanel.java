@@ -82,4 +82,8 @@ public class PageDeRecherchePanel extends JPanel {
         this.barreDeRecherchePanel.clearTextField();
     }
 
+    public void clearListModel() {
+        this.resultatsPanel.clearlistModel();
+    }
+
 }

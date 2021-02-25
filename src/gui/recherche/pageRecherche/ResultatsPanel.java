@@ -46,4 +46,8 @@ public class ResultatsPanel extends JPanel {
         this.filmChoisi = filmChoisi;
     }
 
+    public void clearlistModel() {
+        this.listModel.clear();
+    }
+
 }
