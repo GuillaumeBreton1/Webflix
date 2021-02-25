@@ -2,11 +2,11 @@ package façade;
 
 import backend.courtier.CourtierFilm;
 import backend.courtier.CourtierFilmv2;
+import backend.courtier.CourtierLocation;
 import backend.hibernate.HibernateUtil;
+import backend.hibernate.tableMapping.Film;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
-import backend.hibernate.tableMapping.Film;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
@@ -18,12 +18,13 @@ public class Facade {
     private static Integer userLoggedId;
     private String courriel;
     private char[] motDePasse;
+    private static CourtierLocation courtierLocation = new CourtierLocation();
     private static CourtierFilm courtierFilm = new CourtierFilm();
     private static CourtierFilmv2 courtierFilmv2 = new CourtierFilmv2();
 
     //Session sessionMain = HibernateUtil.getSessionFactory().openSession();
 
-    public static boolean login(String courriel, char[] motDePasse){
+    public static boolean login(String courriel, char[] motDePasse) {
         boolean loginFonctionnel = true;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -34,46 +35,66 @@ public class Facade {
             query.setString(1, String.valueOf(motDePasse));
             query.executeUpdate();
 
-            Query selectQuery = session.createQuery("FROM Utilisateur U WHERE U.courriel = :userCourriel");
+            Query selectQuery = session.createQuery("SELECT U.id FROM Utilisateur U WHERE U.courriel = :userCourriel");
             selectQuery.setString("userCourriel", courriel);
             List resultatsUtilisateur = selectQuery.list();
-            userLoggedId = resultatsUtilisateur.indexOf(0);
+            userLoggedId = (Integer) resultatsUtilisateur.get(0);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            loginFonctionnel= false;
-        }finally {
+            loginFonctionnel = false;
+        } finally {
             transaction.commit();
             session.close();
         }
         return loginFonctionnel;
     }
 
-    // Retourne la liste de films demandés lors de la recherche, prend en paramètre la liste de recherche 
-    public static ArrayList<Film> getFilms(List<Object> params){
+    public static boolean locationExemplaire(Integer filmId) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        courtierLocation = new CourtierLocation();
+        boolean locationValide = true;
+        try {
+            locationValide = courtierLocation.locationExemplaire(userLoggedId, filmId, session);
+        }catch(Exception e){
+            transaction.rollback();
+            locationValide = false;
+            e.printStackTrace();
+        }finally {
+            transaction.commit();
+            session.close();
+        }
+
+        return locationValide;
+    }
+
+    // Retourne la liste de films demandés lors de la recherche, prend en paramètre la liste de recherche
+    public static ArrayList<Film> getFilms(List<Object> params) {
         ArrayList<Film> films = new ArrayList<Film>();
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        try{
+        try {
             films = (ArrayList<Film>) courtierFilmv2.getListFilm(params, session);
-        }catch(Exception e){
+        } catch (Exception e) {
 
-        }finally {
+        } finally {
             transaction.commit();
             session.close();
         }
         return films;
     }
 
-    public static Film getInfoFilms(int id){
+    public static Film getInfoFilms(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         Film f = null;
-        try{
+        try {
             f = courtierFilm.getFilmDetails(id, session);
-        }catch(Exception e){
+        } catch (Exception e) {
 
-        }finally {
+        } finally {
             transaction.commit();
             session.close();
             return f;
@@ -105,6 +126,7 @@ public class Facade {
         Facade.currentSession = currentSession;
         Facade.courtierFilm = new CourtierFilm();
     }
+
     public Integer getUserLoggedId() {
         return userLoggedId;
     }

@@ -33,6 +33,8 @@ public class Frame extends JFrame {
     private PageInfoPersonnePanel pageInfoPersonnePanel;
     private PageLocationPanel pageLocationPanel;
 
+    private static Integer idFilm;
+
     public Frame() {
         this.card = new CardLayout();
         this.cards = new JPanel(card);
@@ -81,7 +83,7 @@ public class Frame extends JFrame {
                     char[] motDePasse;
                     utilisateur = userField.getText();
                     motDePasse = passwordField.getPassword();
-                    
+
                     boolean loginFonctionnel = Facade.login(utilisateur, motDePasse);
                     if (!loginFonctionnel) {
                         JOptionPane.showMessageDialog(loginPanel, "Mauvaise combinaison de email/mot de passe",
@@ -118,8 +120,7 @@ public class Frame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                card.show(cards, "location");
+                    card.show(cards, "location");
             }
         });
     }
@@ -132,6 +133,7 @@ public class Frame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int filmdID = resultatsPanel.getListeResultats().getSelectedValue().getId();
+                idFilm = filmdID;
                 Film film = Facade.getInfoFilms(filmdID);
                 resultatsPanel.setFilmChoisi(film);
                 pageInfoFilmPanel.setMovie(film);
