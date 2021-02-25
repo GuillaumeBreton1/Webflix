@@ -99,12 +99,14 @@ public class Frame extends JFrame {
     public void setUpLogoutActionListener(CardLayout card, JPanel cards) {
 
         JButton logoutButton = this.pageDeRecherchePanel.getLogoutButton();
+        PageDeRecherchePanel panel = this.pageDeRecherchePanel;
+
         logoutButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 card.first(cards);
+                panel.clearListModel();
             }
         });
     }
