@@ -1,12 +1,19 @@
 package backend.courtier;
 
+import antlr.PrintWriterWithSMAP;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.sql.SQLException;
+
 public class CourtierLocation {
 
-    public boolean locationExemplaire(Integer idClient, Integer idFilm, Session session) {
-        boolean locationValide = true;
+    public int locationExemplaire(Integer idClient, Integer idFilm, Session session) throws Exception{
 
         try {
 
@@ -14,12 +21,22 @@ public class CourtierLocation {
             query.setInteger(0, idClient);
             query.setInteger(1, idFilm);
             query.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-            locationValide = false;
+        } catch (HibernateException e) {
+            StringWriter sw  = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+
+            System.out.println("e: " + sw.toString());
+            if(sw.toString().contains("limite")){
+                return 1;
+
+            }else if(sw.toString().contains("Aucun exemplaire")){
+                return 2;
+            }
+
         }
 
-        return locationValide;
+        return 0;
     }
 
 

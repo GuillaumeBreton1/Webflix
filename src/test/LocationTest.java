@@ -29,19 +29,19 @@ public class LocationTest {
 
     @Test
     public void ALouerFilmTest(){
-        assertTrue(Facade.locationExemplaire(ID_FILM1));
+        assertTrue(Facade.locationExemplaire(ID_FILM1) == 0);
     }
 
     @Test
     public void BForfaitDepasseTest(){
-        assertTrue(!Facade.locationExemplaire(ID_FILM2));
+        assertTrue(Facade.locationExemplaire(ID_FILM2) == 1 );
     }
 
     // On essaye de se connecter avec un autre utilisateur et de louer un film qui n'a plus d'exemplaire.
     @Test
     public void CExemplaireIndisponibleTest(){
         Facade.login(USER_EMAIL2, USER_PASSWORD.toCharArray());
-        assertTrue(!Facade.locationExemplaire(ID_FILM1));
+        assertTrue(Facade.locationExemplaire(ID_FILM1) == 2);
     }
 
 }

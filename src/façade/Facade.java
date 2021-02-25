@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,18 +51,18 @@ public class Facade {
         return loginFonctionnel;
     }
 
-    public static boolean locationExemplaire(Integer filmId) {
+    public static int locationExemplaire(Integer filmId) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         courtierLocation = new CourtierLocation();
-        boolean locationValide = true;
+        int locationValide = 0;
         try {
             locationValide = courtierLocation.locationExemplaire(userLoggedId, filmId, session);
         }catch(Exception e){
+
             transaction.rollback();
-            locationValide = false;
-            e.printStackTrace();
+
         }finally {
             transaction.commit();
             session.close();

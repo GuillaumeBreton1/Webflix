@@ -18,10 +18,16 @@ public class LouerListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println("Film loué + " + this.infoFilmPanel.getFilmActuel().getId());
-        boolean locationValide = Facade.locationExemplaire(this.infoFilmPanel.getFilmActuel().getId());
-        if (!locationValide) {
-            JOptionPane.showMessageDialog(infoFilmPanel, "Location de l'exemplaire " + this.infoFilmPanel.getFilmActuel().getTitre() + " invalide",
+        int locationValide = Facade.locationExemplaire(this.infoFilmPanel.getFilmActuel().getId());
+        if (locationValide == 1) {
+            JOptionPane.showMessageDialog(infoFilmPanel, "Vous avez dépassé votre limite de films loués. Veuillez en retourner un!",
+                    "Erreur pour la location", JOptionPane.ERROR_MESSAGE);
+        }else if(locationValide == 2){
+            JOptionPane.showMessageDialog(infoFilmPanel, "Le film " + this.infoFilmPanel.getFilmActuel().getTitre() + " n'a pas d'exemplaire disponible pour le moment",
                     "Erreur pour la location!", JOptionPane.ERROR_MESSAGE);
+        }else if(locationValide == 0) {
+            JOptionPane.showMessageDialog(infoFilmPanel, "Vous avez loué le film " + this.infoFilmPanel.getFilmActuel().getTitre() + "!",
+                    "Location réussie!", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }
