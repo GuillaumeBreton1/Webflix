@@ -133,7 +133,7 @@ public class CourtierFilmv2 {
         for(String titre : titres){
             titre = "%" + titre + "%";
             Criteria criteria = getCriteria(session);
-            criteria.add(Restrictions.like("titre", titre));
+            criteria.add(Restrictions.ilike("titre", titre));
 
             List<Film> liste = (List<Film>) criteria.list();
             for(Film film : liste){
@@ -154,7 +154,7 @@ public class CourtierFilmv2 {
 
         for(String nomPays : pays){
             nomPays = "%" + nomPays + "%";
-            Query query = session.createQuery("FROM Pays p JOIN FETCH p.films WHERE p.nom LIKE :nom");
+            Query query = session.createQuery("FROM Pays p JOIN FETCH p.films WHERE UPPER(p.nom) LIKE UPPER(:nom)");
             query.setParameter("nom", nomPays);
             List<Film> liste = new ArrayList<>(((List<Pays>) query.list()).get(0).getFilms());
             for(Film film : liste){
@@ -171,7 +171,7 @@ public class CourtierFilmv2 {
             langue = "%" + langue + "%";
 
             Criteria criteria = getCriteria(session);
-            criteria.add(Restrictions.like("langueOriginale", langue));
+            criteria.add(Restrictions.ilike("langueOriginale", langue));
 
             List<Film> liste = (List<Film>) criteria.list();
             for(Film film : liste){
@@ -186,7 +186,7 @@ public class CourtierFilmv2 {
 
         for(String nomGenre : genres){
             nomGenre = "%" + nomGenre + "%";
-            Query query = session.createQuery("FROM Genre g JOIN FETCH g.films WHERE g.nom LIKE :nom");
+            Query query = session.createQuery("FROM Genre g JOIN FETCH g.films WHERE UPPER(g.nom) LIKE UPPER(:nom)");
             query.setParameter("nom", nomGenre);
             List<Film> liste = new ArrayList<>(((List<Genre>) query.list()).get(0).getFilms());
             for(Film film : liste){
