@@ -163,7 +163,7 @@ public class BarreDeRecherchePanel extends JPanel {
     }
 
     public List<String> stringToArray(String string){
-        String[] str = string.split(",");
+        String[] str = string.split(",\\s+|," );
         List<String> liste = new ArrayList<String>();
         System.out.println("String : " + str[0]);
 
