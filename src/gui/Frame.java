@@ -41,11 +41,11 @@ public class Frame extends JFrame {
         this.pageInfoFilmPanel = new PageInfoFilmPanel();
         this.pageInfoPersonnePanel = new PageInfoPersonnePanel();
         this.pageLocationPanel = new PageLocationPanel();
-
+        this.pack();
         setTitle(TITRE_FENETRE);
-        setLocationRelativeTo(null);
-        setResizable(false);
         setSize(DIMENSION);
+        this.setResizable(true);
+        setLocationRelativeTo(null);
 
         this.setUpLoginActionListener(this.card, this.cards, this.loginPanel);
         this.setUpListeResultatsSelectionListener(this.pageDeRecherchePanel.getResultsPanel(), this.card, this.cards,
@@ -55,7 +55,6 @@ public class Frame extends JFrame {
         this.setUpLogoutActionListener(this.card, this.cards);
         this.setUpLocationActionListener(this.card, this.cards);
 
-        this.setResizable(true);
 
         this.cards.add(this.loginPanel, "login");
         this.cards.add(this.pageDeRecherchePanel, "recherche");

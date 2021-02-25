@@ -58,7 +58,10 @@ public class InfoPersonnePanel extends JPanel {
         this.dateNaissance = new JLabel();
         this.lieuNaissance = new JLabel();
         this.photo = new JLabel();
-        this.biographie = new JTextArea(5,500);
+        this.biographie = new JTextArea(10,40);
+        this.biographie.setWrapStyleWord(true);
+        this.biographie.setLineWrap(true);
+        this.biographie.setEditable(false);
         this.bioScroll = new JScrollPane(this.biographie);
         //this.biographie.setPreferredSize(new Dimension(200,500));
         this.infoDeLaPersonnePanel = new JPanel();
