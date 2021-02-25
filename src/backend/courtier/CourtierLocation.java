@@ -1,15 +1,11 @@
 package backend.courtier;
 
-import antlr.PrintWriterWithSMAP;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.SQLException;
 
 public class CourtierLocation {
 

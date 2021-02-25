@@ -1,6 +1,5 @@
 package backend.courtier;
 
-import backend.hibernate.HibernateUtil;
 import backend.hibernate.tableMapping.Film;
 import backend.hibernate.tableMapping.Genre;
 import backend.hibernate.tableMapping.Pays;
@@ -10,77 +9,15 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.jpa.criteria.CriteriaBuilderImpl;
 import org.hibernate.transform.Transformers;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class CourtierFilmv2 {
-
-    public static void main(String[] args){
-        Session session = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            //CourtierFilmv2 courtier = new CourtierFilmv2(session);
-
-            List<String> titres = new ArrayList<>();
-//            titres.add("Pirat");
-//            titres.add("Kong");
-//            List<Film> filmsTitre = courtier.rechercheTitre(titres);
-
-            Integer dateSortie1 = -1;
-            Integer dateSortie2 = 2010;
-//            List<Film> films = courtier.rechercheDateSortie(2000,2002);
-
-            List<String> pays = new ArrayList<>();
-//            pays.add("West Germany");
-//            pays.add("Canada");
-//            List<Film> filmsPays = courtier.recherchePays(pays);
-
-            List<String> langues = new ArrayList<>();
-//            langues.add("Italian");
-//            langues.add("French");
-//            List<Film> filmsLangue = courtier.rechercheLangue(langues);
-
-            List<String> genres = new ArrayList<>();
-//            genres.add("Western");
-//            genres.add("History");
-//            List<Film> filmsGenre = courtier.rechercheGenre(genres);
-
-            List<String> realisateurs = new ArrayList<>();
-//            realisateurs.add("Alfred Hitchcock");
-//            realisateurs.add("Stanley Kubrick");
-//            List<Film> filmsRealisateur = courtier.rechercheRealisateur(realisateurs);
-
-            List<String> acteurs = new ArrayList<>();
-            acteurs.add("Cruise");
-//            acteurs.add("Sean Connery");
-//            List<Film> filmsActeur = courtier.rechercheActeur(acteurs);
-
-            List<Object> params = new ArrayList<>();
-            params.add(true);
-            params.add(titres);
-            params.add(dateSortie1);
-            params.add(dateSortie2);
-            params.add(pays);
-            params.add(langues);
-            params.add(genres);
-            params.add(realisateurs);
-            params.add(acteurs);
-
-            //List<Film> liste = courtier.getListFilm(params);
-
-            System.out.println("allo");
-        }finally {
-            session.close();
-        }
-    }
 
     public List<Film> getListFilm(List<Object> params, Session session){
         List<Film> films = new ArrayList<>();
@@ -216,7 +153,6 @@ public class CourtierFilmv2 {
 
     private List<Film> rechercheActeur(List<String> acteurs, Session session){
         Map<Integer, Film> films = new HashMap<>();
-        //session.beginTransaction();
         for(String acteur : acteurs){
             acteur = "%" + acteur + "%";
             Query query = session.createQuery(
@@ -229,7 +165,6 @@ public class CourtierFilmv2 {
                 films.put(film.getId(), film);
             }
         }
-        //session.getTransaction().commit();
         return new ArrayList<Film>(films.values());
     }
 
@@ -307,5 +242,17 @@ public class CourtierFilmv2 {
             }
         }
         return new ArrayList<>(filmsMap1.values());
+    }
+
+    public Film getFilmDetails(Integer idFilm, Session session){
+
+        //session.beginTransaction();
+        Query query = session.createQuery(
+                "FROM Film f " +
+                        "WHERE f.id = :id");
+        query.setInteger("id", idFilm);
+        Film film = (Film) query.list().get(0);
+        //session.getTransaction().commit();
+        return film;
     }
 }
