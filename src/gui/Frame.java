@@ -63,7 +63,7 @@ public class Frame extends JFrame {
         this.cards.add(this.pageInfoFilmPanel, "infofilm");
         this.cards.add(this.pageInfoPersonnePanel, "infoperso");
         this.cards.add(this.pageLocationPanel, "location");
-
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(cards);
 
         this.setVisible(true);
